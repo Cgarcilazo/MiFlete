@@ -1,4 +1,4 @@
-name: miFlete
+name: MiFlete
 recipe: laravel
 config:
   webroot: public
