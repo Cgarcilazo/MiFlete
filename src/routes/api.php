@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => '/v1' ], function () {
+Route::group(['prefix' => '/v1', 'middleware' => ['jwt']], function () {
     Route::get('/test', 'TestController@test');
 });
