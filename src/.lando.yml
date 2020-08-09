@@ -1,0 +1,42 @@
+name: miFlete
+recipe: laravel
+config:
+  webroot: public
+  via: nginx
+services:
+  appserver:
+    type: php:7.3
+    webroot: .
+  appserver_nginx:
+    type: nginx
+    webroot: public
+    ssl: true
+    config:
+      vhosts: lando-configs/miFlete.conf.tpl
+  cache:
+    type: redis
+    persist: true
+    portforward: true
+  database:
+    type: mysql:5.7
+    portforward: 3307
+    creds:
+      user: local
+      password: secret
+      database: local
+  node:
+    type: node:12
+    build:
+      - 'npm install'
+tooling:
+  redis-cli:
+    service: cache
+  php-unit:
+    cmd:
+      - appserver: 'phpunit --testsuite miFlete'
+  laravel-horizon:
+    cmd:
+      - appserver: 'php artisan horizon'
+  npm:
+    service: node
+

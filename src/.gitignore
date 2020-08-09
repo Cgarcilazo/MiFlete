@@ -1,0 +1,25 @@
+#IMPORTANT Git by default ignores case sensitives changes i.e change from foo.png to Foo.png will not be detected
+#Make a <git config core.ignorecase false> to accomplish that behavior
+/node_modules
+/public/css
+/public/hot
+/public/js
+/public/storage
+/public/vendor
+/public/images/vendor
+/public/mix-manifest.json
+/public/index.html
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+npm-debug.log
+package-lock.json
+yarn-error.log
+/public/vendor/l5-swagger
+/resources/views/vendor
+/storage/api-docs
+/storage/*.jpg
+/storage/*.jpeg
+.phpunit.result.cache
+tags
