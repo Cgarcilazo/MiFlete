@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => '/v1', 'middleware' => ['jwt']], function () {
-    Route::get('/test', 'TestController@test');
+Route::group(['prefix' => '/v1'], function () {
+    Route::post('/register', 'UserController@register');
+
+    Route::group(['middleware' => 'jwt'], function () {
+        // Route::get('/test', 'TestController@test');
+    });
 });

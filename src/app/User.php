@@ -17,7 +17,11 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'type',
     ];
 
     /**
@@ -26,7 +30,11 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'updated_at',
+        'created_at',
+        'deleted_at',
     ];
 
     /**
@@ -36,6 +44,15 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Current user types
+     */
+    public static $types = [
+        'client' => 'client',
+        'carrier' => 'carrier',
+        'admin' => 'admin',
     ];
 
     /**
@@ -53,4 +70,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * Creation rules for one user
+     */
+    public static $creationRules = [
+        'first_name' => 'required|string',
+        'last_name' => 'required|string',
+        'email' => 'required|string|unique:users',
+        'password' => 'required|string',
+        'phone_number' => 'string',
+        'is_client' => 'required|boolean',
+    ];
 }
