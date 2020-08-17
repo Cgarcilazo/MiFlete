@@ -29,7 +29,7 @@ class UserController extends BaseApi
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'type' => $type,
-                'phone_number' => 'string',
+                'phone_number' => $request->phone_number ?: null,
             ]);
 
             $claims = [
