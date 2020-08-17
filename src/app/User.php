@@ -82,4 +82,26 @@ class User extends Authenticatable implements JWTSubject
         'phone_number' => 'string',
         'is_client' => 'required|boolean',
     ];
+
+    /**
+     * Login rules for one user
+     */
+    public static $loginRules = [
+        'email' => 'required|string',
+        'password' => 'required|string',
+    ];
+
+    //Methods
+
+    /**
+     * Find user by the provided email
+     *
+     * @param string $email
+     */
+    public static function findByEmail($email)
+    {
+        return self::where([
+            'email' => $email
+        ])->first();
+    }
 }
