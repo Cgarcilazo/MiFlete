@@ -18,9 +18,9 @@ class CreateInitialMigration extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name')
-                ->nullable();
+                ->nullable(false);
             $table->string('last_name')
-                ->nullable();
+                ->nullable(false);
             $table->string('email')
                 ->nullable(false)
                 ->unique();
@@ -52,13 +52,9 @@ class CreateInitialMigration extends Migration
             $table->increments('id');
             $table->string('category')
                 ->nullable(false);
-            $table->string('last_name')
-                ->nullable();
             $table->string('status')
                 ->nullable(false);
             $table->longText('description')
-                ->nullable();
-            $table->dateTime('dob')
                 ->nullable();
             $table->string('origin')
                 ->nullable(false);
@@ -88,7 +84,7 @@ class CreateInitialMigration extends Migration
         //Replies
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('rate', 2)
+            $table->decimal('price', 2)
                 ->nullable(false);
             $table->string('status')
                 ->nullable(false);
@@ -124,8 +120,6 @@ class CreateInitialMigration extends Migration
         //Interactions
         Schema::create('interactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('rate', 2)
-                ->nullable(false);
             $table->longText('description')
                 ->nullable();
             $table->softDeletes();
