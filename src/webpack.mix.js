@@ -32,7 +32,7 @@ mix.webpackConfig({
   },
   resolve: {
     alias: {
-      Assets: path.resolve(__dirname, 'resources/js/vue/assets'),
+      Assets: path.resolve(__dirname, 'resources/sass'),
       Base: path.resolve(__dirname, 'resources/js/vue/'),
       Components: path.resolve(__dirname, 'resources/js/vue/components'),
       Constants: path.resolve(__dirname, 'resources/js/vue/constants'),
@@ -54,7 +54,7 @@ mix.webpackConfig({
 
 mix
   .js('resources/js/app.js', 'public/js')
-  .sass('resources/sass/app.scss', 'public/css')
+  .sass('resources/sass/_app.scss', 'public/css')
   .options({
     processCssUrls: false
   });
