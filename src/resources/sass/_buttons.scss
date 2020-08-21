@@ -1,0 +1,30 @@
+button {
+  &.btn {
+    padding: .5rem 4rem;
+  }
+
+  &.primary {
+    border-radius: $radius;
+    background-color: $green;
+    font-weight: $bold;
+    color: $white;
+    margin: 1rem 0;
+
+    &:hover {
+      color: $white;
+      background-color: $light-green;
+    }
+  }
+
+  &.outline {
+    border-radius: $radius;
+    background-color: $white;
+    font-weight: $bold;
+    color: $green;
+    border: 1px solid $green;
+  }
+
+  &.link {
+    color: $light-blue;
+  }
+}
