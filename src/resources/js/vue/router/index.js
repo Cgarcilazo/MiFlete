@@ -17,17 +17,17 @@ export const router = new Router({
     // public routes
     {
       path: '/',
-      name: 'Landing',
+      name: 'landing',
       component: Landing
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },
     {
       path: '/signup',
-      name: 'SignUp',
+      name: 'signUp',
       component: SignUp
     },
   ]
