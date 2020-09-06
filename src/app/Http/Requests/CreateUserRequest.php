@@ -26,4 +26,14 @@ class CreateUserRequest extends FormRequest
     {
         return User::$creationRules;
     }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return User::$creationMessages;
+    }
 }

@@ -18,13 +18,17 @@
           <p class="mb-1 description">
             Soy un:
           </p>
-          <button class="btn secondary mt-1">
+          <button class="btn mt-1"
+                  :class="[form['is_client'] ? 'secondary' : 'default']"
+                  @click="selectClient">
             <font-awesome-icon :icon="['far', 'user']"/>
             <br/>
             Cliente
           </button>
 
-          <button class="btn btn-small default mt-1">
+          <button class="btn btn-small mt-1"
+                  :class="[form['is_client'] ? 'default' : 'secondary']"
+                  @click="selectCarrier">
             <font-awesome-icon :icon="['fas', 'truck-moving']"/>
             <br/>
             Transportista
@@ -146,7 +150,7 @@
           <div class="form-group col-12 text-center">
             <button class="btn primary"
                     type="submit"
-                    :disabled="invalid">
+                    :disabled="invalid || fetching">
               Crear cuenta
             </button>
           </div>
@@ -157,6 +161,8 @@
 </template>
 
 <script>
+  import helpers from 'Base/utils/helpers';
+
   export default {
     data () {
       return {
@@ -168,15 +174,40 @@
           phone_number: '',
           password: '',
           confirm_password: '',
-        }
+        },
+        fetching: false,
       }
     },
 
     methods: {
       onSubmit () {
-        console.log('missing vuex')
+        this.fetching = true;
+
+        this.$store.dispatch('user/register', this.form)
+          .then(response => {
+            this.$toast.success(response.data.message);
+          })
+          .catch(error => {
+            if (error.response.data.data.errors != null) {
+              let errorList = helpers.handleResponseErrors(error.response.data.data.errors);
+              this.$toast.error(errorList[0]);
+            } else {
+              this.$toast.error(error.response.data.error);
+            }
+          })
+          .finally(() => {
+            this.fetching = false;
+          });
       },
-    }
+
+      selectClient () {
+        this.form['is_client'] = true;
+      },
+
+      selectCarrier () {
+        this.form['is_client'] = false;
+      },
+    },
   }
 </script>
 

@@ -41,6 +41,7 @@ module.exports = {
     'vue/script-indent': ['error', 2, {
       'baseIndent': 1,
       'switchCase': 1
-    }]
+    }],
+    'no-trailing-spaces': 'error',
   }
 };
