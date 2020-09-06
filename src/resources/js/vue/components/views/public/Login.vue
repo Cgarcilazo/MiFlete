@@ -1,16 +1,16 @@
 <template>
   <div class="login-view">
-    <img 
+    <img
       class="background"
       src="/images/register-background.png"/>
     <div class="login-block">
-      <img 
+      <img
         class="logo"
         src="/images/logotext.png"/>
       <div class="login-form">
         <div class="input-group mb-3">
-          <input 
-            type="text"
+          <input
+            type="email"
             class="form-control"
             placeholder="Email"/>
           <div class="input-group-append">
@@ -18,8 +18,8 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input 
-            type="text"
+          <input
+            type="password"
             class="form-control"
             placeholder="Contraseña"/>
           <div class="input-group-append">

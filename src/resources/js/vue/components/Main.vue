@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app"
+       class="h-100">
     <transition name="slide">
       <router-view/>
     </transition>
@@ -18,4 +19,8 @@
   @import 'Assets/_variables.scss';
   @import 'Assets/_mixins.scss';
   @import 'Assets/_buttons.scss';
+
+  html, body {
+    height: 100%;
+  }
 </style>
