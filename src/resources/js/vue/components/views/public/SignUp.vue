@@ -183,7 +183,7 @@
       onSubmit () {
         this.fetching = true;
 
-        this.$store.dispatch('user/register', this.form)
+        this.$store.dispatch('users/register', this.form)
           .then(response => {
             this.$toast.success(response.data.message);
           })

@@ -3,13 +3,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import user from 'Base/store/modules/user';
+import users from 'Base/store/modules/users';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
-    user,
+    users,
   }
 });
 

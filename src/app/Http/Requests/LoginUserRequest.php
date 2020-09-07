@@ -26,4 +26,14 @@ class LoginUserRequest extends FormRequest
     {
         return User::$loginRules;
     }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return User::$creationMessages;
+    }
 }
