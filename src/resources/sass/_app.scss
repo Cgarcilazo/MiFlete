@@ -1,1 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
+
+.has-errors {
+    border-color: $red;
+
+    &:hover, &:active, &:focus {
+        border-color: $red;
+    }
+}
+
+.red-text {
+    color: $red;
+}

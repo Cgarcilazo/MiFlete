@@ -80,8 +80,29 @@ class User extends Authenticatable implements JWTSubject
         'email' => 'required|string|unique:users',
         'password' => 'required|string',
         'confirm_password' => 'required|string|same:password',
-        'phone_number' => 'string',
+        'phone_number' => 'string|nullable',
         'is_client' => 'required|boolean',
+    ];
+
+    /**
+     * Creation messages
+     */
+    public static $creationMessages = [
+        'nombre.required' => 'El nombre es requerido',
+        'nombre.string' => 'El nombre debe ser un string',
+        'apellido.required' => 'El apellido es requerido',
+        'apellido.string' => 'El apellido debe ser un string',
+        'email.required' => 'El email es requerido',
+        'email.string' => 'El email debe ser un string',
+        'email.unique' => 'El email ya existe',
+        'password.required' => 'La contraseña es requerida',
+        'password.string' => 'La contraseña debe ser un string',
+        'confirm_password.required' => 'La confirmación de contraseña es requerida',
+        'confirm_password.string' => 'La confirmación de contraseña debe ser un string',
+        'confirm_password.same' => 'La confirmación de contraseña debe ser igual a la contraseña ingresada',
+        'phone_number.string' => 'El número de teléfono debe ser un string',
+        'is_client.required' => 'Debe indicar si es cliente o transportista',
+        'is_client.boolean' => 'Debe proporcionar un valor booleano indicando si es cliente o transportista',
     ];
 
     /**

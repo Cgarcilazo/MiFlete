@@ -39,13 +39,13 @@ class UserController extends BaseApi
             $token = auth('api')->claims($claims)->fromUser($user);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return $package->setError('There was a problem creating the user, contact one administrator', BaseApi::HTTP_CONFLICT)
+            return $package->setError('Hubo un problema creando el usuario, contacte un administrador', BaseApi::HTTP_CONFLICT)
                 ->toResponse();
         }
 
         DB::commit();
 
-        return $package->setMessage('User Created')
+        return $package->setMessage('Usuario Creado')
             ->setData('user', $user)
             ->setData('token', $token)
             ->toResponse();
@@ -60,7 +60,7 @@ class UserController extends BaseApi
         $user = User::findByEmail($credentials['email']);
 
         if (empty($user)) {
-            return $package->setError('The email is not registered', BaseApi::HTTP_NOT_FOUND)
+            return $package->setError('El email no está registrado', BaseApi::HTTP_NOT_FOUND)
                 ->toResponse();
         }
 
@@ -69,11 +69,11 @@ class UserController extends BaseApi
         ];
         $token = auth('api')->claims($claims)->attempt($credentials);
         if (empty($token)) {
-            return $package->setError('Invalid Credentials', BaseApi::HTTP_CONFLICT)
+            return $package->setError('Credenciales inválidas', BaseApi::HTTP_CONFLICT)
                 ->toResponse();
         }
 
-        return $package->setMessage('Auth Success')
+        return $package->setMessage('Autenticación exitosa')
             ->setData('user', $user)
             ->setData('token', $token)
             ->toResponse();
