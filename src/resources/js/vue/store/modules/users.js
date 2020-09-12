@@ -11,7 +11,13 @@ const getDefaultState = () => {
 export const state = getDefaultState();
 
 export const getters = {
+  isClient (state) {
+    return (state.user != null && state.user['is_client'] != null && state.user['is_client']);
+  },
 
+  isCarrier (state) {
+    return (state.user != null && state.user['is_carrier'] != null && state.user['is_carrier']);
+  },
 };
 
 export const mutations = {
