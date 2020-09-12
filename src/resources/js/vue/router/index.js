@@ -16,7 +16,7 @@ import CarrierRoutes from 'Base/router/carriers';
 import CarrierDashboard from 'Components/views/carriers/Dashboard';
 
 //Middlewares
-import { isPublicRoute } from 'Base/middlewares';
+import middlewares from 'Base/pepito';
 
 Vue.use(Router);
 
@@ -60,6 +60,7 @@ const router = new Router({
       path: '/carriers',
       component: CarrierDashboard,
       children: CarrierRoutes,
+      beforeEnter: multiguard([middlewares.pepito]),
       meta: {
         public: false,
       },
@@ -67,6 +68,6 @@ const router = new Router({
   ]
 });
 
-router.beforeEach(multiguard([isPublicRoute]));
+// router.beforeEach(multiguard([middlewares.pepito]));
 
 export default router;
