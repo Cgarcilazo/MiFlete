@@ -16,6 +16,9 @@
       :class="`${color}-font`">
       {{ title }}
     </h1>
+    <h4 class="text">
+      <slot></slot>
+    </h4>
   </div>
 </template>
 
@@ -34,7 +37,7 @@
 
       number: {
         type: String,
-        default: '1'
+        required: true
       },
 
       title: {
@@ -51,7 +54,7 @@
 
 .tip-wrapper {
   @include flex(column, flex-start, space-between, wrap);
-  width: 15%;
+  width: 20%;
 
   .number-arrow-wrapper {
     @include flex(row, center, space-between, wrap);
@@ -69,6 +72,11 @@
 
   .title {
     font-weight: $bold;
+  }
+
+  .text {
+    font-weight: bold;
+    font-size: 1.5rem;
   }
 }
 
