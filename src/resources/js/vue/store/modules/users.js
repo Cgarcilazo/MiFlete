@@ -18,6 +18,10 @@ export const getters = {
   isCarrier (state) {
     return (state.user != null && state.user['is_carrier'] != null && state.user['is_carrier']);
   },
+
+  isAuthenticated (state) {
+   return state.token != null;
+  },
 };
 
 export const mutations = {

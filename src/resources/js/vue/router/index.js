@@ -15,8 +15,11 @@ import ClientDashboard from 'Components/views/clients/Dashboard';
 import CarrierRoutes from 'Base/router/carriers';
 import CarrierDashboard from 'Components/views/carriers/Dashboard';
 
+//General Routes
+import { LANDING_ROUTE, LOGIN_ROUTE, SIGN_UP_ROUTE } from 'Constants/general/routes';
+
 //Middlewares
-import middlewares from 'Base/pepito/pepito';
+import { isPublicRoute, isPrivateRoute } from 'Base/middlewares';
 
 Vue.use(Router);
 
@@ -26,7 +29,7 @@ const router = new Router({
     // public routes
     {
       path: '/',
-      name: 'landing',
+      name: LANDING_ROUTE,
       component: Landing,
       meta: {
         public: true,
@@ -34,7 +37,7 @@ const router = new Router({
     },
     {
       path: '/login',
-      name: 'login',
+      name: LOGIN_ROUTE,
       component: Login,
       meta: {
         public: true,
@@ -42,7 +45,7 @@ const router = new Router({
     },
     {
       path: '/signup',
-      name: 'signUp',
+      name: SIGN_UP_ROUTE,
       component: SignUp,
       meta: {
         public: true,
@@ -67,6 +70,6 @@ const router = new Router({
   ]
 });
 
-router.beforeEach(multiguard([middlewares.pepito]));
+router.beforeEach(multiguard([isPublicRoute, isPrivateRoute]));
 
 export default router;

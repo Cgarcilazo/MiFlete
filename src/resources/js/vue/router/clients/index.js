@@ -10,12 +10,18 @@ import Home from 'Components/views/clients/Home';
 const routes = [
   {
     path: '/',
-    redirect: { name: CLIENT_HOME_ROUTE }
+    redirect: { name: CLIENT_HOME_ROUTE },
+    meta: {
+      public: false,
+    },
   },
   {
     name: CLIENT_HOME_ROUTE,
     path: 'home',
     component: Home,
+    meta: {
+      public: false,
+    }
   },
 ];
 
