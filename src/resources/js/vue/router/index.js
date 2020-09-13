@@ -1,34 +1,75 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import multiguard from 'vue-router-multiguard';
+
 // Public views
 import SignUp from 'Components/views/public/SignUp'
 import Landing from 'Components/views/public/Landing'
 import Login from 'Components/views/public/Login'
 
 // Client views
+import ClientRoutes from 'Base/router/clients';
+import ClientDashboard from 'Components/views/clients/Dashboard';
 
 // Carrier views
+import CarrierRoutes from 'Base/router/carriers';
+import CarrierDashboard from 'Components/views/carriers/Dashboard';
+
+//General Routes
+import { LANDING_ROUTE, LOGIN_ROUTE, SIGN_UP_ROUTE } from 'Constants/general/routes';
+
+//Middlewares
+import { isPublicRoute, isPrivateRoute } from 'Base/middlewares';
 
 Vue.use(Router);
 
-export const router = new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     // public routes
     {
       path: '/',
-      name: 'landing',
-      component: Landing
+      name: LANDING_ROUTE,
+      component: Landing,
+      meta: {
+        public: true,
+      },
     },
     {
       path: '/login',
-      name: 'login',
-      component: Login
+      name: LOGIN_ROUTE,
+      component: Login,
+      meta: {
+        public: true,
+      },
     },
     {
       path: '/signup',
-      name: 'signUp',
-      component: SignUp
+      name: SIGN_UP_ROUTE,
+      component: SignUp,
+      meta: {
+        public: true,
+      },
+    },
+    {
+      path: '/clients',
+      component: ClientDashboard,
+      children: ClientRoutes,
+      meta: {
+        public: false,
+      },
+    },
+    {
+      path: '/carriers',
+      component: CarrierDashboard,
+      children: CarrierRoutes,
+      meta: {
+        public: false,
+      },
     },
   ]
 });
+
+router.beforeEach(multiguard([isPublicRoute, isPrivateRoute]));
+
+export default router;

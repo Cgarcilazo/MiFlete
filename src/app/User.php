@@ -47,6 +47,14 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
+     * Attributes that should be appended by default
+     */
+    protected $appends = [
+        'is_client',
+        'is_carrier',
+    ];
+
+    /**
      * Current user types
      */
     public static $types = [
@@ -125,5 +133,21 @@ class User extends Authenticatable implements JWTSubject
         return self::where([
             'email' => $email
         ])->first();
+    }
+
+    /**
+     * Check if the current user is a client
+     */
+    public function getIsClientAttribute()
+    {
+        return $this->type === self::$types['client'];
+    }
+
+    /**
+     * Check if the current user is a carrier
+     */
+    public function getIsCarrierAttribute()
+    {
+        return $this->type === self::$types['carrier'];
     }
 }

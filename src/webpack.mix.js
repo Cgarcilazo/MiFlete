@@ -33,7 +33,7 @@ mix.webpackConfig({
   resolve: {
     alias: {
       Assets: path.resolve(__dirname, 'resources/sass'),
-      Base: path.resolve(__dirname, 'resources/js/vue/'),
+      Base: path.resolve(__dirname, 'resources/js/vue'),
       Components: path.resolve(__dirname, 'resources/js/vue/components'),
       Constants: path.resolve(__dirname, 'resources/js/vue/constants'),
       Views: path.resolve(__dirname, 'resources/js/vue/views')
