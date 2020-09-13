@@ -2,6 +2,7 @@
 
 import store from 'Base/store';
 import { getHomePage } from 'Base/utils/redirects';
+import { LANDING_ROUTE } from 'Constants/general/routes';
 
 export const isPublicRoute = (to, from, next) => {
   const isPublic = to.meta.public || false;
@@ -26,7 +27,7 @@ export const isPrivateRoute = (to, from, next) => {
     if (isAuthenticated) {
       next();
     } else {
-      next({ name: 'landing' }); //Go to landing
+      next({ name: LANDING_ROUTE }); //Go to landing
     }
   } else {
     next();
