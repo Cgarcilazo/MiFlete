@@ -12,7 +12,7 @@ import validationRules from 'Base/validator';
 import store from 'Base/store';
 import Toast from "vue-toastification";
 import 'vue-toastification/dist/index.css';
-import { requestInterceptor } from 'Base/services/interceptors';
+import { requestInterceptor, responseInterceptor } from 'Base/services/interceptors';
 
 library.add(faBoxOpen, faEnvelope, faUser, faKey, faTruck, faUserPlus, faSignInAlt, faCheck,
   faClipboardList, faEdit, faAngleRight, faSearchDollar, faUsers, faSignOutAlt);
@@ -42,5 +42,6 @@ const vm = new Vue({
   validationRules,
   store,
   requestInterceptor,
+  responseInterceptor,
   render: h => h(App)
 }).$mount('#app');

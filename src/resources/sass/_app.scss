@@ -1,13 +1,18 @@
 @import "~bootstrap/scss/bootstrap";
+@import 'Assets/_variables.scss';
+
+body {
+  font-family: $MainFont;
+}
 
 .has-errors {
-    border-color: $red;
+  border-color: $red;
 
-    &:hover, &:active, &:focus {
-        border-color: $red;
-    }
+  &:hover, &:active, &:focus {
+    border-color: $red;
+  }
 }
 
 .red-text {
-    color: $red;
+  color: $red;
 }

@@ -58,7 +58,11 @@ export const fetchUser = (to, from, next) => {
     return next();
   } else {
     store.dispatch('users/fetchUser')
-      .finally(() => {
+      .then(() => {
+        return next();
+      })
+      .catch(() => {
+        store.commit('users/logout');
         return next();
       })
   }
