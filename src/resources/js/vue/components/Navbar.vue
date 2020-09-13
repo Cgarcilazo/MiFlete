@@ -88,7 +88,6 @@
   import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE } from 'Constants/general/routes'
 
   export default {
-
     components: { UserMenu },
 
     data () {
@@ -100,9 +99,7 @@
     },
 
     computed: {
-
       ...mapGetters('users', ['isClient', 'isCarrier', 'isAuthenticated'])
-
     }
   }
 </script>

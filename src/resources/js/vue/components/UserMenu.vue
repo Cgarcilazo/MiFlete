@@ -54,14 +54,11 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-
     computed: {
-
       ...mapGetters('users', ['isClient', 'getUser']),
     },
 
     methods: {
-
       ...mapActions('users', ['logout'])
     }
   }

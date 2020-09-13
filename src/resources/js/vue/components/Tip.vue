@@ -21,9 +21,7 @@
 
 <script>
   export default {
-
     props: {
-
       color: {
         type: String,
         default: 'green'
