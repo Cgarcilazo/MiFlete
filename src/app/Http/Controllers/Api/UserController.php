@@ -95,6 +95,27 @@ class UserController extends BaseApi
     }
 
     /**
+     * Refresh the token for the given user
+     *
+     * @return JsonResponse
+     */
+    public function refresh()
+    {
+        $package = new ResponsePackage();
+
+        try {
+            $token = auth('api')->refresh();
+        } catch (\Exception $e) {
+            return $package->setError('No es posible refrescar el token')
+                ->toResponse();
+        }
+
+        return $package->setMessage('Nuevo token generado')
+            ->setData('token', $token)
+            ->toResponse();
+    }
+
+    /**
      * Get the logged user from the token
      *
      * @return JsonResponse

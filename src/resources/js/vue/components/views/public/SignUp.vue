@@ -217,16 +217,14 @@
   @import 'Assets/_variables.scss';
   @import 'Assets/_mixins.scss';
   @import 'Assets/_buttons.scss';
+  @import 'Assets/_background';
 
   .register-view {
     @include flex(row, center, center, wrap);
     height: 100%;
 
     .background {
-      position: fixed;
-      z-index: 0;
-      opacity: .5;
-      width: 100%;
+      @include background();
     }
 
     .register-form {

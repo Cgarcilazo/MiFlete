@@ -1,5 +1,7 @@
 'use strict';
 import axios from 'axios';
+import router from 'Base/router';
+import { LANDING_ROUTE } from 'Constants/general/routes';
 
 const getDefaultState = () => {
   return {
@@ -38,6 +40,13 @@ export const mutations = {
 
     localStorage.setItem('token', token);
   },
+
+  logout(state) {
+    state.token = null;
+    state.user = null;
+    localStorage.removeItem('token');
+    router.push({ name: LANDING_ROUTE});
+  },
 };
 
 export const actions = {
@@ -74,8 +83,22 @@ export const actions = {
   },
 
   logout ({ dispatch }) {
-    dispatch('reset')
-    router.push({ name: 'landing' })
+    dispatch('reset');
+    router.push({ name: 'landing' });
+  },
+
+  refresh ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios.post('/api/v1/users/refresh')
+        .then((response) => {
+          const token = response.data.data.token;
+          commit('setToken', token);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
   },
 
   fetchUser ({ commit }) {
