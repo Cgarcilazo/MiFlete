@@ -52,8 +52,9 @@ export const onlyForCarriers = (to, from, next) => {
 
 export const fetchUser = (to, from, next) => {
   const user = store.state.users.user;
+  const isPublic = to.meta.public || false;
 
-  if (user != null) {
+  if (user != null || isPublic) {
     return next();
   } else {
     store.dispatch('users/fetchUser')

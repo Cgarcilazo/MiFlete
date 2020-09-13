@@ -29,7 +29,7 @@
           <button class="btn btn-small mt-1"
                   :class="[form['is_client'] ? 'default' : 'secondary']"
                   @click="selectCarrier">
-            <font-awesome-icon :icon="['fas', 'truck-moving']"/>
+            <font-awesome-icon :icon="['fas', 'truck']"/>
             <br/>
             Transportista
           </button>

@@ -22,6 +22,10 @@ export const getters = {
   isAuthenticated (state) {
    return state.token != null;
   },
+
+  getUser (state) {
+    return state.user || getDefaultState().user
+  }
 };
 
 export const mutations = {
@@ -67,6 +71,11 @@ export const actions = {
           reject(error);
         })
     });
+  },
+
+  logout ({ dispatch }) {
+    dispatch('reset')
+    router.push({ name: 'landing' })
   },
 
   fetchUser ({ commit }) {

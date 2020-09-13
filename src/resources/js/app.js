@@ -4,7 +4,8 @@ import App from 'Components/Main';
 import router from './vue/router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faBoxOpen, faKey, faTruckMoving } from '@fortawesome/free-solid-svg-icons'
+import { faBoxOpen, faKey, faTruck, faUserPlus, faSignInAlt, faCheck, faClipboardList,
+  faEdit, faAngleRight, faSearchDollar, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import validationRules from 'Base/validator';
@@ -13,7 +14,8 @@ import Toast from "vue-toastification";
 import 'vue-toastification/dist/index.css';
 import { requestInterceptor } from 'Base/services/interceptors';
 
-library.add(faBoxOpen, faEnvelope, faUser, faKey, faTruckMoving);
+library.add(faBoxOpen, faEnvelope, faUser, faKey, faTruck, faUserPlus, faSignInAlt, faCheck,
+  faClipboardList, faEdit, faAngleRight, faSearchDollar, faUsers);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationProvider', ValidationProvider);
