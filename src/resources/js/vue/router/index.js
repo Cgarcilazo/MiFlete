@@ -69,6 +69,10 @@ const router = new Router({
         public: false,
       },
     },
+    {
+      path: '*',
+      redirect: { name: LANDING_ROUTE },
+    }
   ]
 });
 

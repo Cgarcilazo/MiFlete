@@ -36,7 +36,6 @@ export const isPrivateRoute = (to, from, next) => {
 
 export const onlyForClients = (to, from, next) => {
   const isClient = store.getters['users/isClient'];
-  console.log(isClient,'client');
 
   return isClient
     ? next()
