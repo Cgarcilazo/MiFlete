@@ -21,7 +21,7 @@
         </p>
 
         <button class="btn primary">
-          Nueva Solitud
+          Nueva Solicitud
         </button>
       </div>
     </div>
