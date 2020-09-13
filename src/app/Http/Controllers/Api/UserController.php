@@ -9,10 +9,18 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends BaseApi
 {
+    /**
+     * Register one user
+     *
+     * @param  CreateUserRequest $request
+     *
+     * @return JsonResponse
+     */
     public function register(CreateUserRequest $request)
     {
         $package = new ResponsePackage();
@@ -51,6 +59,13 @@ class UserController extends BaseApi
             ->toResponse();
     }
 
+    /**
+     * Login the user
+     *
+     * @param  LoginUserRequest $request
+     *
+     * @return JsonResponse
+     */
     public function login(LoginUserRequest $request)
     {
         $package = new ResponsePackage();
@@ -76,6 +91,22 @@ class UserController extends BaseApi
         return $package->setMessage('Autenticación exitosa')
             ->setData('user', $user)
             ->setData('token', $token)
+            ->toResponse();
+    }
+
+    /**
+     * Get the logged user from the token
+     *
+     * @return JsonResponse
+     */
+    public function getUser()
+    {
+        $package = new ResponsePackage();
+
+        $user = $this->user();
+
+        return $package
+            ->setData('user', $user)
             ->toResponse();
     }
 }

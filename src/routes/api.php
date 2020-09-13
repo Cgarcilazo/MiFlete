@@ -19,6 +19,6 @@ Route::group(['prefix' => '/v1'], function () {
     Route::post('/login', 'UserController@login');
 
     Route::group(['middleware' => 'jwt'], function () {
-        // Route::get('/test', 'TestController@test');
+        Route::get('/getUser', 'UserController@getUser');
     });
 });
