@@ -16,7 +16,6 @@
       :class="`${color}-font`">
       {{ title }}
     </h1>
-    <template></template>
   </div>
 </template>
 

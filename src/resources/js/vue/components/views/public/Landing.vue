@@ -26,9 +26,7 @@
       </div>
       <div class="how-works-wrapper">
         <h1>¿Cómo funciona miFlete?</h1>
-        <Tip title="Publicá">
-          Publicá lo que necesitas transportar
-        </Tip>
+        <Tip title="Publicá"/>
       </div>
     </div>
   </div>
