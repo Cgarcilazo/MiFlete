@@ -19,7 +19,7 @@ import CarrierDashboard from 'Components/views/carriers/Dashboard';
 import { LANDING_ROUTE, LOGIN_ROUTE, SIGN_UP_ROUTE } from 'Constants/general/routes';
 
 //Middlewares
-import { isPublicRoute, isPrivateRoute } from 'Base/middlewares';
+import { fetchUser, isPublicRoute, isPrivateRoute, onlyForClients, onlyForCarriers } from 'Base/middlewares';
 
 Vue.use(Router);
 
@@ -55,6 +55,7 @@ const router = new Router({
       path: '/clients',
       component: ClientDashboard,
       children: ClientRoutes,
+      beforeEnter: multiguard([onlyForClients]),
       meta: {
         public: false,
       },
@@ -63,13 +64,18 @@ const router = new Router({
       path: '/carriers',
       component: CarrierDashboard,
       children: CarrierRoutes,
+      beforeEnter: multiguard([onlyForCarriers]),
       meta: {
         public: false,
       },
     },
+    {
+      path: '*',
+      redirect: { name: LANDING_ROUTE },
+    }
   ]
 });
 
-router.beforeEach(multiguard([isPublicRoute, isPrivateRoute]));
+router.beforeEach(multiguard([fetchUser, isPublicRoute, isPrivateRoute]));
 
 export default router;

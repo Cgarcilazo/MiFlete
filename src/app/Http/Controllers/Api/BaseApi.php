@@ -35,4 +35,14 @@ class BaseApi extends Controller
     const RESET_PASSWORD_TOKEN_EXPIRED = 'This link has been already used to reset a password';
     const VERATAD_AGE_VALIDATION_FAILED = 'Call support for age validation';
     const FTC_AGE_VERIFICATION_MESSAGE = "Sorry, but registration could not be processed at this time.";
+
+    /**
+     * Returns authenticated account.
+     *
+     * @return mixed
+     */
+    public function user()
+    {
+        return auth('api')->user();
+    }
 }

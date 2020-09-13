@@ -10,7 +10,8 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import validationRules from 'Base/validator';
 import store from 'Base/store';
 import Toast from "vue-toastification";
-import 'vue-toastification/dist/index.css'
+import 'vue-toastification/dist/index.css';
+import { requestInterceptor } from 'Base/services/interceptors';
 
 library.add(faBoxOpen, faEnvelope, faUser, faKey, faTruckMoving);
 
@@ -38,5 +39,6 @@ const vm = new Vue({
   router,
   validationRules,
   store,
+  requestInterceptor,
   render: h => h(App)
 }).$mount('#app');

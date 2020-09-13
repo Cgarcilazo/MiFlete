@@ -10,9 +10,9 @@ export const isPublicRoute = (to, from, next) => {
 
   if (isPublic) {
     if (isAuthenticated) {
-      next(getHomePage()); //Get home page according user type
+      return next(getHomePage()); //Get home page according user type
     } else {
-      next();
+      return next();
     }
   } else {
     return next();
@@ -25,16 +25,47 @@ export const isPrivateRoute = (to, from, next) => {
 
   if (!isPublic) {
     if (isAuthenticated) {
-      next();
+      return next();
     } else {
-      next({ name: LANDING_ROUTE }); //Go to landing
+      return next({ name: LANDING_ROUTE }); //Go to landing
     }
   } else {
-    next();
+    return next();
+  }
+}
+
+export const onlyForClients = (to, from, next) => {
+  const isClient = store.getters['users/isClient'];
+
+  return isClient
+    ? next()
+    : next(getHomePage());
+}
+
+export const onlyForCarriers = (to, from, next) => {
+  const isCarrier = store.getters['users/isCarrier'];
+
+  return isCarrier
+    ? next()
+    : next(getHomePage());
+}
+
+export const fetchUser = (to, from, next) => {
+  const user = store.state.users.user;
+
+  if (user != null) {
+    return next();
+  } else {
+    store.dispatch('users/fetchUser')
+      .finally(() => {
+        return next();
+      })
   }
 }
 
 export default {
   isPublicRoute,
   isPrivateRoute,
+  onlyForClients,
+  onlyForCarriers,
 }

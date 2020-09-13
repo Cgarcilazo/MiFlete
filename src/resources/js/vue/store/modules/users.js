@@ -68,6 +68,20 @@ export const actions = {
         })
     });
   },
+
+  fetchUser ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios.get('/api/v1/getUser')
+        .then((response) => {
+          const user = response.data.data.user;
+          commit('setUser', user);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  },
 };
 
 export default {

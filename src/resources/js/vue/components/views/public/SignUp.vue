@@ -162,6 +162,7 @@
 
 <script>
   import helpers from 'Base/utils/helpers';
+  import { getHomePage } from 'Base/utils/redirects';
 
   export default {
     data () {
@@ -186,6 +187,7 @@
         this.$store.dispatch('users/register', this.form)
           .then(response => {
             this.$toast.success(response.data.message);
+            this.$router.replace(getHomePage());
           })
           .catch(error => {
             if (error.response.data.data.errors != null) {
