@@ -15,7 +15,7 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false">
-          FER
+          {{ getUser.first_name }}
           <font-awesome-icon
             class="dropdown-icon"
             :icon="'angle-right'"
@@ -42,8 +42,7 @@
         </div>
       </div>
 
-
-      <p class="user-organization">
+      <p class="user-type">
         {{ isClient ? 'Cliente' : 'Transportista' }}
       </p>
     </div>
@@ -51,15 +50,18 @@
 </template>
 
 <script>
+
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    computed: {
-      ...mapGetters('users', ['isClient']),
 
+    computed: {
+
+      ...mapGetters('users', ['isClient', 'getUser']),
     },
 
     methods: {
+
       ...mapActions('users', ['logout'])
     }
   }
@@ -114,7 +116,7 @@
       }
     }
 
-    .user-organization {
+    .user-type {
       margin: 0;
       align-self: baseline;
       color: $light-blue;

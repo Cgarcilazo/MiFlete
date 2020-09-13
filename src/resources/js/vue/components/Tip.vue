@@ -21,19 +21,24 @@
 
 <script>
   export default {
+
     props: {
+
       color: {
         type: String,
         default: 'green'
       },
+
       arrow: {
         type: Boolean,
         default: true
       },
+
       number: {
         type: String,
         default: '1'
       },
+
       title: {
         type: String,
         required: true

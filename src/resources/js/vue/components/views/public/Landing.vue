@@ -37,7 +37,9 @@
   import Tip from 'Components/Tip'
 
   export default {
+
     components: { Navbar, Tip },
+
     data () {
       return {
 

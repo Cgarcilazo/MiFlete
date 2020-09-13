@@ -12,7 +12,7 @@
           <router-link
             class="nav-item"
             exact
-            :to="{ name: 'signUp' }">
+            :to="{ name: signUp }">
             <font-awesome-icon
               class="navbar-icon"
               icon="user-plus"
@@ -22,7 +22,7 @@
           <router-link
             class="nav-item"
             exact
-            :to="{ name: 'login' }">
+            :to="{ name: login }">
             <font-awesome-icon
               class="navbar-icon"
               icon="sign-in-alt"
@@ -35,7 +35,7 @@
           <router-link
             class="nav-item"
             exact
-            :to="{ name: 'signUp' }">
+            :to="{ name: landing }">
             <font-awesome-icon
               class="navbar-icon"
               icon="truck"
@@ -48,7 +48,7 @@
           <router-link
             class="nav-item"
             exact
-            :to="{ name: 'signUp' }">
+            :to="{ name: landing }">
             <font-awesome-icon
               class="navbar-icon"
               icon="clipboard-list"
@@ -58,7 +58,7 @@
           <router-link
             class="nav-item"
             exact
-            :to="{ name: 'login' }">
+            :to="{ name: landing }">
             <font-awesome-icon
               class="navbar-icon"
               icon="sign-in-alt"
@@ -68,7 +68,7 @@
           <router-link
             class="nav-item"
             exact
-            :to="{ name: 'login' }">
+            :to="{ name: landing }">
             <font-awesome-icon
               class="navbar-icon"
               icon="check"
@@ -85,18 +85,24 @@
 <script>
   import { mapGetters } from 'vuex'
   import UserMenu from 'Components/UserMenu'
+  import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE } from 'Constants/general/routes'
 
   export default {
+
     components: { UserMenu },
 
     data () {
       return {
-
+        signUp: SIGN_UP_ROUTE,
+        login: LOGIN_ROUTE,
+        landing: LANDING_ROUTE
       }
     },
 
     computed: {
+
       ...mapGetters('users', ['isClient', 'isCarrier', 'isAuthenticated'])
+
     }
   }
 </script>
