@@ -25,8 +25,52 @@
         </div>
       </div>
       <div class="how-works-wrapper">
-        <h1>¿Cómo funciona miFlete?</h1>
-        <Tip title="Publicá"/>
+        <h1 class="how-works-title">
+          ¿Cómo funciona miFlete?
+        </h1>
+        <div class="user-tips">
+          <img
+            src="/images/client.png"
+            height="400"/>
+          <Tip
+            title="Publica"
+            number="1"
+            color="light-blue">
+            Publica lo que necesitas transportar
+          </Tip>
+          <Tip
+            title="Compara"
+            number="2"
+            color="light-blue">
+            Compara entre varios presupuestos
+          </Tip>
+          <Tip
+            title="Envia"
+            number="3"
+            color="light-blue">
+            Elige el que quieras y envíalo!
+          </Tip>
+        </div>
+        <div class="user-tips">
+          <img
+            src="/images/carrier.png"
+            height="400"/>
+          <Tip
+            title="Busca"
+            number="1">
+            Busca entre las solicitudes de transporte
+          </Tip>
+          <Tip
+            title="Oferta"
+            number="2">
+            Publica el precio que solicitas por prestar tus servicios de transporte
+          </Tip>
+          <Tip
+            title="Transporta"
+            number="3">
+            Si tu oferta es la elegida, transportalo!
+          </Tip>
+        </div>
       </div>
     </div>
   </div>
@@ -56,33 +100,51 @@
   width: 100%;
   height: 55rem;
 
-.paragraph-container {
-  width: 45%;
-  padding: 6rem;
-}
-.paragraphs-wrapper {
-  @include flex(column, center, space-between, wrap);
-  .paragraph-icon-wrapper {
-    @include flex(row, center, space-between, wrap);
-    width: 35%;
-    margin: 3rem 0;
+  .paragraph-container {
+    width: 45%;
+    padding: 6rem;
+  }
 
-    h2 {
-      font-weight: $bold;
-      width: 85%;
-      margin: 0;
+  .paragraphs-wrapper {
+    @include flex(column, center, space-between, wrap);
 
-      mark {
-        color: $grey;
+    .paragraph-icon-wrapper {
+      @include flex(row, center, space-between, wrap);
+      width: 35%;
+      margin: 3rem 0;
+
+      h2 {
         font-weight: $bold;
-        background-color: $green;
+        width: 85%;
+        margin: 0;
+
+        mark {
+          color: $grey;
+          font-weight: $bold;
+          background-color: $green;
+        }
       }
     }
   }
-}
+
   .landing-paragraph {
     color: $grey;
     font-weight: $bold;
+  }
+}
+
+.how-works-wrapper {
+  @include flex(column, center, space-between, wrap);
+
+  .how-works-title {
+    margin-top: 3rem;
+    font-weight: $bold;
+  }
+
+  .user-tips {
+    @include flex(row, center, space-between, wrap);
+    width: 70%;
+    margin: 1rem 0;
   }
 }
 
