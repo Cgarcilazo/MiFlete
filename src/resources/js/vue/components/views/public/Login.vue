@@ -48,11 +48,21 @@
               {{ errors[0] }}
             </span>
           </ValidationProvider>
-          <button class="btn primary"
+          <button class="btn primary mb-1"
                   :disabled="invalid || fetching"
                   @click="login">
             Login
           </button>
+
+          <p class="mb-0 go-register">
+            ¿Todavía no tienes una cuenta?
+
+            <router-link exact
+                         class="link"
+                         :to="{ name: signUp }">
+              Regístrate
+            </router-link>
+          </p>
         </div>
       </ValidationObserver>
     </div>
@@ -62,6 +72,7 @@
 <script>
   import helpers from 'Base/utils/helpers';
   import { getHomePage } from 'Base/utils/redirects';
+  import  { SIGN_UP_ROUTE } from 'Constants/general/routes';
 
   export default {
     data () {
@@ -71,6 +82,7 @@
           password: '',
         },
         fetching: false,
+        signUp: SIGN_UP_ROUTE,
       }
     },
 
@@ -80,7 +92,6 @@
 
         this.$store.dispatch('users/login', this.form)
           .then(response => {
-            this.$toast.success(response.data.message);
             this.$router.replace(getHomePage());
           })
           .catch(error => {
@@ -151,10 +162,18 @@
           background-color: $light-blue;
           border-radius: 0 $radius $radius 0;
           color: $grey;
-          opacity: .3;
           padding: 10px;
         }
+      }
+
+      .go-register {
+        font-size: 0.7rem;
+        color: $grey;
+
+        .link {
+          text-decoration: underline;
         }
+      }
     }
   }
 }

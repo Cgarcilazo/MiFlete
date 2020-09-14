@@ -7,7 +7,7 @@
       class="avatar round"
       src="/images/profile.png"/>
     <div class="d-flex flex-column justify-content-start">
-      <div class="user-dropdown">
+      <div class="dropdown user-dropdown">
         <button
           id="dropdownMenuButton"
           class="btn btn-secondary dropdown-toggle"
@@ -22,17 +22,17 @@
             rotation="90"/>
         </button>
         <div
-          class="dropdown-menu"
+          class="dropdown-menu py-0"
           aria-labelledby="dropdownMenuButton">
           <div
-            class="my-2">
+            class="my-2 dropdown-item p-2">
             <font-awesome-icon
               :icon="'edit'"/>
-            <span class="ml-2">Editar Cuenta</span>
+            <span class="ml-2">Editar</span>
           </div>
 
           <div
-            class="my-2"
+            class="my-2 dropdown-item p-2"
             @click="logout">
             <font-awesome-icon
               :icon="'sign-out-alt'"
@@ -51,7 +51,7 @@
 
 <script>
 
-  import { mapActions, mapGetters } from 'vuex'
+  import { mapGetters } from 'vuex'
 
   export default {
     computed: {
@@ -59,7 +59,9 @@
     },
 
     methods: {
-      ...mapActions('users', ['logout'])
+      logout () {
+        this.$store.commit('users/logout');
+      }
     }
   }
 </script>
@@ -100,14 +102,17 @@
 
       .dropdown-menu.show {
         margin-top: 30px;
+        min-width: 7.5rem;
 
         .dropdown-item {
           text-decoration: none;
           font-weight: $bold;
+          max-width: 7.5rem;
+          color: $grey;
 
-          &:active {
-            background-color: $white;
-            color: $black;
+          &:hover {
+            background-color: $light-blue;
+            color: $white;
           }
         }
       }
