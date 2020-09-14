@@ -63,9 +63,7 @@
               class="navbar-icon"
               icon="home"
               size="1x"/>
-            <h5>
-              Inicio
-            </h5>
+            <h5>Inicio</h5>
           </router-link>
           <router-link
             class="nav-item"
@@ -75,9 +73,7 @@
               class="navbar-icon"
               icon="clipboard-list"
               size="1x"/>
-            <h5>
-              Solicitudes
-            </h5>
+            <h5>Solicitudes</h5>
           </router-link>
           <router-link
             class="nav-item"
