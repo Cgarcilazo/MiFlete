@@ -163,7 +163,6 @@
         font-weight: 400;
         color: $extra-light-blue;
         text-decoration: none;
-        text-transform: uppercase;
         padding: 37px 48px;
 
         h4 {
