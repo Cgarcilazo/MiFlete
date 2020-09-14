@@ -58,6 +58,16 @@
           <router-link
             class="nav-item"
             exact
+            :to="{ name: carrierHome }">
+            <font-awesome-icon
+              class="navbar-icon"
+              icon="home"
+              size="1x"/>
+            <h4>Inicio</h4>
+          </router-link>
+          <router-link
+            class="nav-item"
+            exact
             :to="{ name: landing }">
             <font-awesome-icon
               class="navbar-icon"
@@ -97,6 +107,7 @@
   import UserMenu from 'Components/UserMenu'
   import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE } from 'Constants/general/routes'
   import { CLIENT_HOME_ROUTE } from 'Constants/clients/routes';
+  import { CARRIER_HOME_ROUTE } from 'Constants/carriers/routes';
 
   export default {
     components: { UserMenu },
@@ -107,6 +118,7 @@
         login: LOGIN_ROUTE,
         landing: LANDING_ROUTE,
         clientHome: CLIENT_HOME_ROUTE,
+        carrierHome: CARRIER_HOME_ROUTE
       }
     },
 
@@ -151,7 +163,6 @@
         font-weight: 400;
         color: $extra-light-blue;
         text-decoration: none;
-        text-transform: uppercase;
         padding: 37px 48px;
 
         h4 {
