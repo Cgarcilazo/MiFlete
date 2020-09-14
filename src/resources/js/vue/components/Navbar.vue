@@ -17,7 +17,7 @@
               class="navbar-icon"
               icon="user-plus"
               size="1x"/>
-            <h4>Registrarse</h4>
+            <h5>Registrarse</h5>
           </router-link>
           <router-link
             class="nav-item"
@@ -27,7 +27,7 @@
               class="navbar-icon"
               icon="sign-in-alt"
               size="1x"/>
-            <h4>Entrar</h4>
+            <h5>Entrar</h5>
           </router-link>
         </div>
         <div v-if="isAuthenticated && isClient"
@@ -40,7 +40,7 @@
               class="navbar-icon"
               icon="home"
               size="1x"/>
-            <h4>Inicio</h4>
+            <h5>Inicio</h5>
           </router-link>
           <router-link
             class="nav-item"
@@ -50,7 +50,7 @@
               class="navbar-icon"
               icon="truck"
               size="1x"/>
-            <h4>Solicitudes</h4>
+            <h5>Solicitudes</h5>
           </router-link>
         </div>
         <div v-if="isAuthenticated && isCarrier"
@@ -63,7 +63,9 @@
               class="navbar-icon"
               icon="home"
               size="1x"/>
-            <h4>Inicio</h4>
+            <h5>
+              Inicio
+            </h5>
           </router-link>
           <router-link
             class="nav-item"
@@ -73,7 +75,9 @@
               class="navbar-icon"
               icon="clipboard-list"
               size="1x"/>
-            <h4>Solicitudes</h4>
+            <h5>
+              Solicitudes
+            </h5>
           </router-link>
           <router-link
             class="nav-item"
@@ -83,7 +87,7 @@
               class="navbar-icon"
               icon="sign-in-alt"
               size="1x"/>
-            <h4>Ofertas realizadas</h4>
+            <h5>Ofertas realizadas</h5>
           </router-link>
           <router-link
             class="nav-item"
@@ -93,7 +97,7 @@
               class="navbar-icon"
               icon="check"
               size="1x"/>
-            <h4>Envíos finalizados</h4>
+            <h5>Envíos finalizados</h5>
           </router-link>
         </div>
         <UserMenu v-if="isAuthenticated"/>
@@ -151,6 +155,7 @@
       .nav-item.router-link-active {
         background: $extra-light-blue;
         color: $white;
+        padding: 2.5rem;
 
         .navbar-icon {
           color: $white;
@@ -160,13 +165,13 @@
       .nav-item {
         @include flex(row, center, space-between, wrap);
         font-size: 1.25em;
-        font-weight: 400;
-        color: $extra-light-blue;
+        color: $grey;
         text-decoration: none;
-        padding: 37px 48px;
+        padding: 2.5rem;
 
-        h4 {
-          margin: 0
+        h5 {
+          margin: 0;
+          font-weight: 400;
         }
 
         @media (max-width: 1380px) {
@@ -176,6 +181,7 @@
         &:hover {
           background: $extra-light-blue;
           color: $white;
+          padding: 2.5rem;
 
           .navbar-icon {
             color: $white;
@@ -184,7 +190,7 @@
 
         .navbar-icon {
           margin-right: 1rem;
-          color: $extra-light-blue;;
+          color: $grey;
         }
       }
     }

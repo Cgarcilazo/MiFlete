@@ -117,6 +117,7 @@
         font-weight: $bold;
         width: 85%;
         margin: 0;
+        line-height: 3rem;
 
         mark {
           color: $grey;
