@@ -8,7 +8,7 @@
           src="/images/logotext.png"
           height="80"/>
         <div v-if="!isAuthenticated"
-             class="navbar-items">
+             class="navbar-items ml-auto">
           <router-link
             class="nav-item"
             exact
@@ -31,7 +31,17 @@
           </router-link>
         </div>
         <div v-if="isAuthenticated && isClient"
-             class="navbar-items">
+             class="navbar-items ml-auto">
+          <router-link
+            class="nav-item"
+            exact
+            :to="{ name: clientHome }">
+            <font-awesome-icon
+              class="navbar-icon"
+              icon="home"
+              size="1x"/>
+            <h4>Inicio</h4>
+          </router-link>
           <router-link
             class="nav-item"
             exact
@@ -44,7 +54,7 @@
           </router-link>
         </div>
         <div v-if="isAuthenticated && isCarrier"
-             class="navbar-items">
+             class="navbar-items ml-auto">
           <router-link
             class="nav-item"
             exact
@@ -86,6 +96,7 @@
   import { mapGetters } from 'vuex'
   import UserMenu from 'Components/UserMenu'
   import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE } from 'Constants/general/routes'
+  import { CLIENT_HOME_ROUTE } from 'Constants/clients/routes';
 
   export default {
     components: { UserMenu },
@@ -94,7 +105,8 @@
       return {
         signUp: SIGN_UP_ROUTE,
         login: LOGIN_ROUTE,
-        landing: LANDING_ROUTE
+        landing: LANDING_ROUTE,
+        clientHome: CLIENT_HOME_ROUTE,
       }
     },
 
@@ -105,16 +117,17 @@
 </script>
 
 <style lang="scss" >
-@import 'Assets/_variables.scss';
-@import 'Assets/_mixins.scss';
+  @import 'Assets/_variables.scss';
+  @import 'Assets/_mixins.scss';
 
-.navbar {
+  .navbar {
     @include flex(row, center, space-between, wrap);
     padding: 0;
     position: absolute;
     right: 0;
     top: 0;
     width: 100%;
+    z-index: 1;
 
     .logo {
       margin-left: 2rem;
@@ -122,6 +135,15 @@
 
     .navbar-items {
       @include flex(row, center, space-between, wrap);
+
+      .nav-item.router-link-active {
+        background: $extra-light-blue;
+        color: $white;
+
+        .navbar-icon {
+          color: $white;
+        }
+      }
 
       .nav-item {
         @include flex(row, center, space-between, wrap);

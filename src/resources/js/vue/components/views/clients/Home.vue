@@ -55,14 +55,38 @@
       z-index: 1;
       width: 50%;
 
+      @include media-breakpoint-down(lg) {
+        width: 100%;
+      }
+
       .client-img {
         width: 8rem;
-        margin-left: 6.6rem;
+        margin-left: 6.7rem;
+
+        @include media-breakpoint-only(xl) {
+          margin-left: 2rem;
+        }
+
+        @include media-breakpoint-only(lg) {
+          margin-left: 8rem;
+        }
+
+        @include media-breakpoint-only(md) {
+          margin-left: 4rem;
+        }
+
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
       }
 
       .content {
         @include flex(column, center, center, wrap);
         width: 50%;
+
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
       }
     }
   }
