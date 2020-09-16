@@ -148,11 +148,21 @@
           </div>
 
           <div class="form-group col-12 text-center">
-            <button class="btn primary"
+            <button class="btn primary mb-1"
                     type="submit"
                     :disabled="invalid || fetching">
               Crear cuenta
             </button>
+
+            <p class="mb-0 go-login">
+              ¿Ya tienes una cuenta?
+
+              <router-link exact
+                           class="link"
+                           :to="{ name: login }">
+                Ingresa
+              </router-link>
+            </p>
           </div>
         </form>
       </ValidationObserver>
@@ -163,6 +173,7 @@
 <script>
   import helpers from 'Base/utils/helpers';
   import { getHomePage } from 'Base/utils/redirects';
+  import  { LOGIN_ROUTE } from 'Constants/general/routes';
 
   export default {
     data () {
@@ -177,6 +188,7 @@
           confirm_password: '',
         },
         fetching: false,
+        login: LOGIN_ROUTE,
       }
     },
 
@@ -186,7 +198,6 @@
 
         this.$store.dispatch('users/register', this.form)
           .then(response => {
-            this.$toast.success(response.data.message);
             this.$router.replace(getHomePage());
           })
           .catch(error => {
@@ -267,6 +278,15 @@
 
       .form {
         width: 100%;
+
+        .go-login {
+          font-size: 0.7rem;
+          color: $grey;
+
+          .link {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

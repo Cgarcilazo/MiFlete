@@ -82,11 +82,6 @@ export const actions = {
     });
   },
 
-  logout ({ dispatch }) {
-    dispatch('reset');
-    router.push({ name: 'landing' });
-  },
-
   refresh ({ commit }) {
     return new Promise((resolve, reject) => {
       axios.post('/api/v1/users/refresh')
