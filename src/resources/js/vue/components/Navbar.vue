@@ -170,10 +170,6 @@
           font-weight: 400;
         }
 
-        @media (max-width: 1380px) {
-          padding: 37px 20px;
-        }
-
         &:hover {
           background: $extra-light-blue;
           color: $white;
