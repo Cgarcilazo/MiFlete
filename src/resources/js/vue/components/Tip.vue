@@ -114,7 +114,7 @@
       }
 
       @include media-breakpoint-down(sm) {
-        font-size: .5rem;
+        font-size: .7rem;
       }
     }
   }
