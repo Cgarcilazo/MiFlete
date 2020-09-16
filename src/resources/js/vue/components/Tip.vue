@@ -7,6 +7,7 @@
       </h1>
       <font-awesome-icon
         v-if="arrow"
+        class="arrow"
         :class="`${color}-font`"
         icon="angle-right"
         size="5x"/>
@@ -49,50 +50,88 @@
 </script>
 
 <style lang="scss" scoped>
-@import 'Assets/_variables.scss';
-@import 'Assets/_mixins.scss';
+  @import 'Assets/_variables.scss';
+  @import 'Assets/_mixins.scss';
+  @import 'Assets/utils/_breakpoints';
 
-.tip-wrapper {
-  @include flex(column, flex-start, space-between, wrap);
-  width: 20%;
+  .tip-wrapper {
+    @include flex(column, flex-start, space-between, wrap);
+    width: 30%;
 
-  .number-arrow-wrapper {
-    @include flex(row, center, space-between, wrap);
-    width: 100%;
+    .number-arrow-wrapper {
+      @include flex(row, center, space-between, wrap);
+      width: 100%;
 
-    .number {
-      font-size: 5rem;
-      width: max-content;
-      padding: 1rem 2.5rem;
-      border-radius: 50%;
-      color: $white;
-      font-weight: $bold
+      .number {
+        font-size: 5rem;
+        width: max-content;
+        padding: 1rem 2.5rem;
+        border-radius: 50%;
+        color: $white;
+        font-weight: $bold;
+
+        @include media-breakpoint-down(xl) {
+          font-size: 4rem;
+          padding: 1rem 2rem;
+        }
+
+        @include media-breakpoint-down(md) {
+          font-size: 3rem;
+          padding: 1rem 1.75rem;
+        }
+
+        @include media-breakpoint-down(sm) {
+          font-size: 1.5rem;
+          padding: .75rem 1rem;
+        }
+      }
+
+      .arrow {
+        @include media-breakpoint-down(sm) {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .title {
+      font-weight: $bold;
+
+      @include media-breakpoint-down(md) {
+        font-size: 1.75rem;
+      }
+
+      @include media-breakpoint-down(sm) {
+        font-size: 1rem;
+      }
+    }
+
+    .text {
+      font-weight: bold;
+      font-size: 1.5rem;
+
+      @include media-breakpoint-down(md) {
+        font-size: 1rem;
+      }
+
+      @include media-breakpoint-down(sm) {
+        font-size: .7rem;
+      }
     }
   }
 
-  .title {
-    font-weight: $bold;
+  .green-bg {
+    background-color: $green;
   }
 
-  .text {
-    font-weight: bold;
-    font-size: 1.5rem;
+  .light-blue-bg {
+    background-color: $light-blue;
   }
-}
 
-.green-bg {
-  background-color: $green;
-}
+  .green-font {
+    color: $green;
+  }
 
-.light-blue-bg {
-  background-color: $light-blue;
-}
-
-.green-font {
-  color: $green;
-}
-
-.light-blue-font {
-  color: $light-blue;
-}
+  .light-blue-font {
+    color: $light-blue;
+  }
 </style>
