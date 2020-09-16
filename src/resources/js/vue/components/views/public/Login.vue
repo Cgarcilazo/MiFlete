@@ -115,6 +115,7 @@
 @import 'Assets/_mixins.scss';
 @import 'Assets/_buttons.scss';
 @import 'Assets/_background';
+@import 'Assets/utils/_breakpoints';
 
 .login-view {
   @include flex(column, center, center, wrap);
@@ -133,6 +134,22 @@
     border-radius: $radius;
     position: relative;
     z-index: 10;
+
+    @include media-breakpoint-down(xl) {
+      width: 40%;
+    }
+
+    @include media-breakpoint-down(lg) {
+      width: 40%;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 50%;
+    }
+
+    @include media-breakpoint-down(sm) {
+      width: 80%;
+    }
 
     .logo {
       width: 10rem;
