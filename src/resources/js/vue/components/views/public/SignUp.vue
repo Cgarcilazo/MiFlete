@@ -14,10 +14,10 @@
           src="/images/logotext.png"/>
       </div>
       <div class="selector px-3">
+        <p class="mb-1 description">
+          Soy un:
+        </p>
         <div class="buttons w-100">
-          <p class="mb-1 description">
-            Soy un:
-          </p>
           <button class="btn mt-1"
                   :class="[form['is_client'] ? 'secondary' : 'default']"
                   @click="selectClient">
@@ -26,7 +26,7 @@
             Cliente
           </button>
 
-          <button class="btn btn-small mt-1"
+          <button class="btn mt-1"
                   :class="[form['is_client'] ? 'default' : 'secondary']"
                   @click="selectCarrier">
             <font-awesome-icon :icon="['fas', 'truck']"/>
@@ -229,6 +229,7 @@
   @import 'Assets/_mixins.scss';
   @import 'Assets/_buttons.scss';
   @import 'Assets/_background';
+  @import 'Assets/utils/_breakpoints';
 
   .register-view {
     @include flex(row, center, center, wrap);
@@ -246,10 +247,26 @@
       opacity: 1;
       border-radius: $radius;
 
+      @include media-breakpoint-down(xl) {
+        width: 45%;
+      }
+
+      @include media-breakpoint-down(lg) {
+        width: 60%;
+      }
+
+      @include media-breakpoint-down(md) {
+        width: 80%;
+      }
+
       .header {
         @include flex(row, center, center, wrap);
         margin-top: 1rem;
         width: 100%;
+
+        @include media-breakpoint-down(sm) {
+          font-size: 1.5rem;
+        }
 
         .logo {
           width: 3.5rem;
@@ -257,17 +274,18 @@
       }
 
       .selector {
-        @include flex(row, center, center, wrap);
+        @include flex(row, center, flex-start, wrap);
         width: 100%;
 
         .buttons {
+          @include flex(row, center, space-between, wrap);
           .btn {
             height: 4rem;
-            width: 50%;
-          }
+            width: 48%;
 
-          .btn-small {
-            width: 49%;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+            }
           }
 
           .description {
@@ -282,6 +300,11 @@
         .go-login {
           font-size: 0.7rem;
           color: $grey;
+
+          @include media-breakpoint-down(md) {
+            font-size: 1rem;
+            margin-top: 1rem;
+          }
 
           .link {
             text-decoration: underline;
