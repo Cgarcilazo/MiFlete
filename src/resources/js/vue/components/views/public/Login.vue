@@ -130,16 +130,12 @@
     @include flex(column, center, space-between, wrap);
     background-color: $white;
     padding: 20px;
-    width: 25%;
+    width: 30%;
     border-radius: $radius;
     position: relative;
     z-index: 10;
 
     @include media-breakpoint-down(xl) {
-      width: 40%;
-    }
-
-    @include media-breakpoint-down(lg) {
       width: 40%;
     }
 
