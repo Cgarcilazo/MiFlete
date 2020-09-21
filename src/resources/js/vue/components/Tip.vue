@@ -114,7 +114,8 @@
       }
 
       @include media-breakpoint-down(sm) {
-        font-size: .7rem;
+        font-size: .8rem;
+        font-weight: normal;
       }
     }
   }

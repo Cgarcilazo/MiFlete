@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex mt-5 justify-content-center w-100">
+  <div class="justify-content-center w-100">
     <Navbar/>
-    <div class="mt-5 w-100">
+    <div class="w-100">
       <div class="content-background">
         <h1 class="landing-paragraph paragraph-container">
           Simplificamos al máximo los envíos ayudando a los clientes
@@ -113,16 +113,15 @@
 
     .paragraph-container {
       width: 60%;
-      padding: 5rem;
+      padding: 10rem 0 2rem 4rem;
 
-      @include media-breakpoint-down(lg) {
+      @include media-breakpoint-down(xl) {
         width: 80%;
-        padding: 4rem;
       }
 
       @include media-breakpoint-down(md) {
         width: 100%;
-        padding: 4rem 2rem 2rem 2rem;
+        padding: 7rem 2rem 2rem 2rem;
       }
     }
 
@@ -134,13 +133,20 @@
         width: 40%;
         margin: 3rem 0;
 
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(xl) {
           width: 50%;
         }
 
+        @include media-breakpoint-down(lg) {
+          width: 70%;
+        }
+
         @include media-breakpoint-down(md) {
-          width: 80%;
           margin: 2rem 0;
+        }
+
+        @include media-breakpoint-down(sm) {
+          width: 80%;
         }
 
         .landing-icon {
@@ -222,13 +228,17 @@
 
       .how-works-img {
         @include media-breakpoint-down(sm) {
-          height: 10rem;
+          display: none;
         }
       }
 
       .tips-container {
         @include flex(row, flex-start, space-between, wrap);
         width: 80%;
+
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
       }
     }
   }
