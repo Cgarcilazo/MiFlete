@@ -70,13 +70,11 @@
 @import 'Assets/_variables.scss';
   #account {
     cursor: default;
-    margin-right: 2rem;
 
     .avatar {
       width: 50px;
       height: 50px;
       margin: 0 8px;
-      margin: 0 24px 0 60px;
     }
 
     .user-dropdown {
@@ -89,6 +87,10 @@
         font-size: 20px;
         padding: 0;
         text-align: left;
+
+        &:focus {
+          box-shadow: none;
+        }
       }
 
       .dropdown-toggle::after {
@@ -102,12 +104,12 @@
 
       .dropdown-menu.show {
         margin-top: 30px;
-        min-width: 7.5rem;
+        min-width: 9rem;
 
         .dropdown-item {
           text-decoration: none;
           font-weight: $bold;
-          max-width: 7.5rem;
+          max-width: 9rem;
           color: $grey;
 
           &:hover {
