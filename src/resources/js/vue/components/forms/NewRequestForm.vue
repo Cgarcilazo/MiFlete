@@ -341,9 +341,7 @@
     }
 
     span {
-    //   input {
-        width: 30%;
-    //   }
+      width: 30%;
     }
   }
 }
