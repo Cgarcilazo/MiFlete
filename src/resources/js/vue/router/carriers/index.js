@@ -2,6 +2,8 @@
 
 //Route names
 import { CARRIER_HOME_ROUTE } from 'Constants/carriers/routes';
+import { EDIT_USER } from 'Constants/general/routes';
+import EditUser from 'Components/views/general/EditUser';
 
 //Components
 import Home from 'Components/views/carriers/Home';
@@ -21,6 +23,14 @@ const routes = [
     meta: {
       public: false,
     },
+  },
+  {
+    name: EDIT_USER,
+    path: 'edit',
+    component: EditUser,
+    meta: {
+      public: false,
+    }
   },
 ];
 

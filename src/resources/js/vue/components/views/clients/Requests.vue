@@ -24,7 +24,6 @@
 
 <script>
   import TableRequests from 'Components/tables/TableRequests'
-  import NewRequestForm from 'Components/forms/NewRequestForm'
   import { CLIENT_NEW_REQUEST_ROUTE } from 'Constants/clients/routes';
   export default {
     components: { TableRequests },

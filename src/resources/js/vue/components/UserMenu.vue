@@ -25,7 +25,8 @@
           class="dropdown-menu dropdown-menu-right py-0"
           aria-labelledby="dropdownMenuButton">
           <div
-            class="my-2 dropdown-item p-2">
+            class="my-2 dropdown-item p-2"
+            @click="editUser">
             <font-awesome-icon
               :icon="'edit'"/>
             <span class="ml-2">Editar</span>
@@ -50,8 +51,8 @@
 </template>
 
 <script>
-
   import { mapGetters } from 'vuex'
+  import  { EDIT_USER } from 'Constants/general/routes';
 
   export default {
     computed: {
@@ -61,7 +62,11 @@
     methods: {
       logout () {
         this.$store.commit('users/logout');
-      }
+      },
+
+      editUser () {
+        this.$router.push({ name: EDIT_USER });
+      },
     }
   }
 </script>
