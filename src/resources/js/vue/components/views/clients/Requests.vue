@@ -24,14 +24,6 @@
     <div
       v-else
       class="requests-body container h-100 p-0">
-      <button
-        class="btn secondary"
-        @click="newRequest">
-        <font-awesome-icon
-          icon="plus"
-          size="1x"/>
-        Nueva Solicitud
-      </button>
       <NewRequestForm/>
     </div>
   </div>
