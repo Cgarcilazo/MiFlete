@@ -121,7 +121,13 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'required|string',
     ];
 
-    //Methods
+    // Relationships
+
+    public function requests() {
+        return $this->hasMany(Request::class);
+    }
+
+    // Methods
 
     /**
      * Find user by the provided email
