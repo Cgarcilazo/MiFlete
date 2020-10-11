@@ -30,10 +30,27 @@ class Request extends Model
         'category',
         'status',
         'description',
-        'origin',
-        'destination',
         'date',
         'user_id',
+        'province_origin',
+        'province_destination',
+        'city_origin',
+        'city_destination',
+        'street_origin',
+        'street_destination',
+        'street_number_origin',
+        'street_number_destination',
+        'flat_number_origin',
+        'flat_number_destination',
+        'flat_letter_origin',
+        'flat_letter_destination',
+        'preferred_hour',
+        'range_hour_from',
+        'range_hour_to',
+        'need_more_carriers',
+        'is_elevator_origin',
+        'is_elevator_destination',
+        'clarifications',
     ];
 
     /**
@@ -48,6 +65,16 @@ class Request extends Model
     ];
 
     /**
+     * The available status for the client request
+     */
+    public static $status = [
+        'pending' => 'Pendiente',
+        'reserved' => 'Reservado',
+        'canceled' => 'Cancelado',
+        'done' => 'Realizado',
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -57,8 +84,42 @@ class Request extends Model
         'category' => 'string',
         'status' => 'string',
         'description' => 'string',
-        'origin' => 'string',
-        'destination' => 'string',
         'user_id' => 'integer',
+        'province_origin' => 'string',
+        'province_destination' => 'string',
+        'city_origin' => 'string',
+        'city_destination' => 'string',
+        'street_origin' => 'string',
+        'street_destination' => 'string',
+        'street_number_origin' => 'string',
+        'street_number_destination' => 'string',
+        'flat_number_origin' => 'string',
+        'flat_number_destination' => 'string',
+        'flat_letter_origin' => 'string',
+        'flat_letter_destination' => 'string',
+        'need_more_carriers' => 'boolean',
+        'is_elevator_origin' => 'boolean',
+        'is_elevator_destination' => 'boolean',
+        'clarifications' => 'string',
+    ];
+
+    public static $creationRules = [
+        'description' => 'required|string',
+        'province_origin' => 'required|string',
+        'province_destination' => 'required|string',
+        'city_origin' => 'required|string',
+        'city_destination' => 'required|string',
+        'street_origin' => 'required|string',
+        'street_destination' => 'required|string',
+        'street_number_origin' => 'required|numeric',
+        'street_number_destination' => 'required|numeric',
+        'flat_number_origin' => 'nullable|numeric',
+        'flat_number_destination' => 'nullable|numeric',
+        'flat_letter_origin' => 'nullable|string',
+        'flat_letter_destination' => 'nullable|string',
+        'need_more_carriers' => 'nullable|boolean',
+        'is_elevator_origin' => 'nullable|boolean',
+        'is_elevator_destination' => 'nullable|boolean',
+        'clarifications' => 'nullable|string',
     ];
 }

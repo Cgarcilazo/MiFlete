@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '/v1'], function () {
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
-    Route::post('users/refresh', 'UserController@refresh');
+    Route::post('/users/refresh', 'UserController@refresh');
 
     Route::group(['middleware' => 'jwt'], function () {
         Route::get('/getUser', 'UserController@getUser');
+
+        // Requests
+        Route::resource('users/{user}/requests', 'RequestController');
     });
 });
