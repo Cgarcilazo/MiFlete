@@ -67,7 +67,7 @@
             <router-link
               class="nav-link"
               exact
-              :to="{ name: landing }">
+              :to="{ name: clientRequests }">
               <font-awesome-icon
                 class="navbar-icon"
                 icon="truck"
@@ -188,7 +188,7 @@
   import { mapGetters } from 'vuex'
   import UserMenu from 'Components/UserMenu'
   import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE } from 'Constants/general/routes'
-  import { CLIENT_HOME_ROUTE } from 'Constants/clients/routes';
+  import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE } from 'Constants/clients/routes';
   import { CARRIER_HOME_ROUTE } from 'Constants/carriers/routes';
 
   export default {
@@ -200,7 +200,8 @@
         login: LOGIN_ROUTE,
         landing: LANDING_ROUTE,
         clientHome: CLIENT_HOME_ROUTE,
-        carrierHome: CARRIER_HOME_ROUTE
+        clientRequests: CLIENT_REQUESTS_ROUTE,
+        carrierHome: CARRIER_HOME_ROUTE,
       }
     },
 
@@ -218,7 +219,7 @@
 
 <style lang="scss" >
   @import 'Assets/_variables.scss';
-  @import 'Assets/_mixins.scss';
+  @import 'Assets/mixins/_flex.scss';
   @import 'Assets/utils/_breakpoints';
 
   .navbar {
@@ -243,18 +244,10 @@
         font-size: 1.25em;
         color: $grey;
         text-decoration: none;
-        padding: 2.5rem;
-
-        @include media-breakpoint-down(xl) {
-          padding: 1.5rem;
-        }
-
-        @include media-breakpoint-down(md) {
-          padding: 0;
-        }
 
         .nav-link {
           color: $grey;
+          padding: 2.5rem;
 
           @include media-breakpoint-down(lg) {
             @include flex(column, center, center, wrap);
@@ -265,46 +258,37 @@
             @include flex(row, center, center, wrap);
             padding: 0;
           }
-        }
 
-        &:hover {
-          background: $extra-light-blue;
-          padding: 2.5rem;
-
-          @include media-breakpoint-down(xl) {
-            padding: 1.5rem;
-          }
-
-          .nav-link {
+          &:hover, &.router-link-active {
+            background: $extra-light-blue;
             color: $white;
+
+            .navbar-icon {
+              color: $white;
+            }
+
+            @include media-breakpoint-down(md) {
+              background: none;
+              color: $grey;
+
+              .navbar-icon {
+                color: $grey;
+              }
+            }
           }
 
           .navbar-icon {
-            color: $white;
+            margin-right: 1rem;
+            color: $grey;
+
+            @include media-breakpoint-down(lg) {
+              margin: 0;
+            }
+
+            @include media-breakpoint-down(md) {
+              margin: 1rem;
+            }
           }
-        }
-
-        .navbar-icon {
-          margin-right: 1rem;
-          color: $grey;
-
-          @include media-breakpoint-down(lg) {
-            margin: 0;
-          }
-
-          @include media-breakpoint-down(md) {
-            margin: 1rem;
-          }
-        }
-      }
-
-      .nav-item.router-link-active {
-        background: $extra-light-blue;
-        color: $white;
-        padding: 2.5rem;
-
-        .navbar-icon {
-          color: $white;
         }
       }
 
@@ -315,15 +299,12 @@
       }
 
       li {
-        padding: 2.5rem;
         display: flex;
-
-        @include media-breakpoint-down(xl) {
-          padding: 1.5rem;
-        }
       }
 
       .user-menu {
+        margin: 0 2rem;
+
         @include media-breakpoint-down(md) {
           display: none;
         }

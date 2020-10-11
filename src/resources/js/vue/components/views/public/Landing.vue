@@ -1,29 +1,7 @@
 <template>
   <div class="justify-content-center w-100">
     <Navbar/>
-    <div class="w-100">
-      <div class="content-background">
-        <h1 class="landing-paragraph paragraph-container">
-          Simplificamos al máximo los envíos ayudando a los clientes
-          a conectarse directamente con transportistas
-        </h1>
-        <div class="landing-paragraph paragraphs-wrapper">
-          <div class="paragraph-icon-wrapper">
-            <font-awesome-icon
-              class="landing-icon"
-              icon="search-dollar"
-              size="5x"/>
-            <h2>LOS <mark>CLIENTES</mark> ENCUENTRAN EL MEJOR PRECIO</h2>
-          </div>
-          <div class="paragraph-icon-wrapper">
-            <h2>LOS <mark>TRANSPORTISTAS</mark> LLEGAN A MÁS CLIENTES</h2>
-            <font-awesome-icon
-              class="landing-icon"
-              icon="users"
-              size="5x"/>
-          </div>
-        </div>
-      </div>
+    <div class="landing-content">
       <div class="how-works-wrapper">
         <h1 class="how-works-title">
           ¿Cómo funciona miFlete?
@@ -32,7 +10,7 @@
           <img
             class="how-works-img"
             src="/images/client.png"
-            height="400"/>
+            height="300"/>
           <div class="tips-container">
             <Tip
               title="Publica"
@@ -58,7 +36,7 @@
           <img
             class="how-works-img"
             src="/images/carrier.png"
-            height="400"/>
+            height="300"/>
           <div class="tips-container">
             <Tip
               title="Busca"
@@ -88,156 +66,62 @@
 
   export default {
     components: { Navbar, Tip },
-
-    data () {
-      return {
-
-      }
-    }
   }
 </script>
 
 <style lang="scss">
   @import 'Assets/_variables.scss';
-  @import 'Assets/_mixins.scss';
+  @import 'Assets/mixins/_flex.scss';
   @import 'Assets/utils/_breakpoints';
 
-  .content-background {
-    background-image: url("/images/landing-img.jpg");
+  .landing-content {
+    background-color: $background-grey;
+    padding-top: 5rem;
     width: 100%;
-    height: 55rem;
+    height: 100%;
 
-    @include media-breakpoint-down(md) {
-      height: 35rem;
-    }
-
-    .paragraph-container {
-      width: 60%;
-      padding: 10rem 0 2rem 4rem;
-
-      @include media-breakpoint-down(xl) {
-        width: 80%;
-      }
-
-      @include media-breakpoint-down(md) {
-        width: 100%;
-        padding: 7rem 2rem 2rem 2rem;
-      }
-    }
-
-    .paragraphs-wrapper {
+    .how-works-wrapper {
       @include flex(column, center, space-between, wrap);
 
-      .paragraph-icon-wrapper {
+      .how-works-title {
+        margin-top: 2.5rem;
+        font-weight: $bold;
+
+        @include media-breakpoint-down(sm) {
+          font-size: 1.5rem;
+        }
+      }
+
+      .user-tips {
         @include flex(row, center, space-between, wrap);
-        width: 40%;
-        margin: 3rem 0;
+        width: 70%;
+        margin: 1rem 0;
 
         @include media-breakpoint-down(xl) {
-          width: 50%;
+          width: 85%;
         }
 
         @include media-breakpoint-down(lg) {
-          width: 70%;
+          width: 90%;
         }
 
-        @include media-breakpoint-down(md) {
-          margin: 2rem 0;
-        }
-
-        @include media-breakpoint-down(sm) {
-          width: 80%;
-        }
-
-        .landing-icon {
-          @include media-breakpoint-down(lg) {
-            font-size: 4rem;
+        .how-works-img {
+          @include media-breakpoint-down(xl) {
+            height: 250px;
           }
 
           @include media-breakpoint-down(sm) {
-            font-size: 3rem;
+            display: none;
           }
         }
 
-        h2 {
-          font-weight: $bold;
-          width: 80%;
-          margin: 0;
-          line-height: 3rem;
-
-          @include media-breakpoint-down(lg) {
-            font-size: 2rem;
-          }
-
-          @include media-breakpoint-down(md) {
-            font-size: 1.5rem;
-          }
+        .tips-container {
+          @include flex(row, flex-start, space-between, wrap);
+          width: 85%;
 
           @include media-breakpoint-down(sm) {
-            font-size: 1rem;
-            line-height: 2rem;
+            width: 100%;
           }
-
-          mark {
-            color: $grey;
-            font-weight: $bold;
-            background-color: $green;
-          }
-        }
-      }
-    }
-
-    .landing-paragraph {
-      color: $grey;
-      font-weight: $bold;
-
-      @include media-breakpoint-down(lg) {
-        font-size: 2rem;
-      }
-
-      @include media-breakpoint-down(md) {
-        font-size: 1.5rem;
-      }
-    }
-  }
-
-  .how-works-wrapper {
-    @include flex(column, center, space-between, wrap);
-
-    .how-works-title {
-      margin-top: 3rem;
-      font-weight: $bold;
-
-      @include media-breakpoint-down(sm) {
-        font-size: 1.5rem;
-      }
-    }
-
-    .user-tips {
-      @include flex(row, center, space-between, wrap);
-      width: 70%;
-      margin: 1rem 0;
-
-      @include media-breakpoint-down(xl) {
-        width: 80%;
-      }
-
-      @include media-breakpoint-down(lg) {
-        width: 90%;
-      }
-
-      .how-works-img {
-        @include media-breakpoint-down(sm) {
-          display: none;
-        }
-      }
-
-      .tips-container {
-        @include flex(row, flex-start, space-between, wrap);
-        width: 80%;
-
-        @include media-breakpoint-down(sm) {
-          width: 100%;
         }
       }
     }

@@ -22,7 +22,7 @@
             rotation="90"/>
         </button>
         <div
-          class="dropdown-menu py-0"
+          class="dropdown-menu dropdown-menu-right py-0"
           aria-labelledby="dropdownMenuButton">
           <div
             class="my-2 dropdown-item p-2">
@@ -95,7 +95,6 @@
 
       .dropdown-toggle::after {
         display: none !important;
-        margin-left: 8px;
       }
 
       .dropdown-icon {
@@ -108,7 +107,6 @@
 
         .dropdown-item {
           text-decoration: none;
-          font-weight: $bold;
           max-width: 9rem;
           color: $grey;
 

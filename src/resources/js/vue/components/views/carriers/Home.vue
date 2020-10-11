@@ -36,10 +36,10 @@
 
 <style lang="scss" scoped>
   @import 'Assets/_variables.scss';
-  @import 'Assets/_mixins.scss';
+  @import 'Assets/mixins/_flex.scss';
   @import 'Assets/_buttons.scss';
   @import 'Assets/utils/_breakpoints';
-  @import 'Assets/_background';
+  @import 'Assets/mixins/_background.scss';
 
   .client-home {
     @include flex(row, center, center, wrap);

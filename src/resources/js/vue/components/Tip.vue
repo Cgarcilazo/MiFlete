@@ -51,7 +51,7 @@
 
 <style lang="scss" scoped>
   @import 'Assets/_variables.scss';
-  @import 'Assets/_mixins.scss';
+  @import 'Assets/mixins/_flex.scss';
   @import 'Assets/utils/_breakpoints';
 
   .tip-wrapper {
@@ -63,7 +63,7 @@
       width: 100%;
 
       .number {
-        font-size: 5rem;
+        font-size: 4rem;
         width: max-content;
         padding: 1rem 2.5rem;
         border-radius: 50%;
@@ -71,11 +71,11 @@
         font-weight: $bold;
 
         @include media-breakpoint-down(xl) {
-          font-size: 4rem;
+          font-size: 3.5rem;
           padding: 1rem 2rem;
         }
 
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
           font-size: 3rem;
           padding: 1rem 1.75rem;
         }
@@ -95,6 +95,7 @@
 
     .title {
       font-weight: $bold;
+      font-size: 2rem;
 
       @include media-breakpoint-down(md) {
         font-size: 1.75rem;
@@ -107,9 +108,9 @@
 
     .text {
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
 
-      @include media-breakpoint-down(md) {
+      @include media-breakpoint-down(lg) {
         font-size: 1rem;
       }
 

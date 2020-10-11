@@ -1,5 +1,5 @@
-@mixin background () {
-  position: fixed;
+@mixin background ($position: fixed) {
+  position: $position;
   z-index: 0;
   opacity: .5;
   width: 100%;

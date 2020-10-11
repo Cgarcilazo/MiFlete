@@ -1,6 +1,10 @@
 button {
   &.btn {
     padding: .5rem 4rem;
+
+    &:focus {
+      box-shadow: none !important;
+    }
   }
 
   &.primary {
@@ -24,8 +28,12 @@ button {
     border: 1px solid $green;
   }
 
-  &.link {
-    color: $light-blue;
+  &.btn-link {
+    padding: 1rem !important;
+
+    &.btn-delete {
+      color: $red;
+    }
   }
 
   &.secondary {
