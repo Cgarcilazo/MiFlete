@@ -53,14 +53,9 @@
 
 <script>
   export default {
-    props: {
-      fields: {
-        type: Array,
-        required: true
-      }
-    },
     data() {
       return {
+        fields: ['Origen', 'Destino', 'Fecha', 'Ofertas Recibidas', 'Estado'],
         requests: [
           { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 3, state: 'reservado'},
           { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 4, state: 'realizado'},

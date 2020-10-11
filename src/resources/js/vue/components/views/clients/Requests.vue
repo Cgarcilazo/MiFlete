@@ -5,30 +5,53 @@
         class="background"
         src="/images/client-home-background.jpg"/>
       <h2 class="page-title">
-        Administrar solicitudes
+        {{ showForm ? 'Registrar solicitud' : 'Administrar solicitudes' }}
       </h2>
     </div>
-    <div class="requests-body container h-100 p-0">
-      <button class="btn secondary">
+    <div
+      v-if="!showForm"
+      class="requests-body container h-100 p-0">
+      <button
+        class="btn secondary"
+        @click="newRequest">
         <font-awesome-icon
           icon="plus"
           size="1x"/>
         Nueva Solicitud
       </button>
-      <TableRequests
-        :fields="fields"/>
+      <TableRequests/>
+    </div>
+    <div
+      v-else
+      class="requests-body container h-100 p-0">
+      <button
+        class="btn secondary"
+        @click="newRequest">
+        <font-awesome-icon
+          icon="plus"
+          size="1x"/>
+        Nueva Solicitud
+      </button>
+      <NewRequestForm/>
     </div>
   </div>
 </template>
 
 <script>
   import TableRequests from 'Components/tables/TableRequests'
+  import NewRequestForm from 'Components/forms/NewRequestForm'
   export default {
-    components: { TableRequests },
+    components: { TableRequests, NewRequestForm },
 
     data() {
       return {
-        fields: ['Origen', 'Destino', 'Fecha', 'Ofertas Recibidas', 'Estado']
+        showForm: false
+      }
+    },
+
+    methods: {
+      newRequest() {
+        this.showForm = true
       }
     }
   }
