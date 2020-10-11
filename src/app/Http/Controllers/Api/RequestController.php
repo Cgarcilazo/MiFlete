@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\DB;
 class RequestController extends BaseApi
 {
     /**
+     * Get the list of requests for the given user
+     *
+     * @param User $user
+     *
+     * @return JsonResponse
+     */
+    public function index(User $user)
+    {
+        $package = new ResponsePackage();
+        $clientRequests = $user->requests()->get();
+
+        foreach ($clientRequests as $request) {
+            $request->append('replies_count');
+        }
+
+        return $package->setMessage('Lista de Solicitudes')
+            ->setData('solicitud', $clientRequests)
+            ->toResponse();
+    }
+
+    /**
      * Store one particular request for the given user
      *
      * @param  User $user

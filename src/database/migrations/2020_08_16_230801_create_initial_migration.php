@@ -84,7 +84,7 @@ class CreateInitialMigration extends Migration
         //Replies
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('price', 2)
+            $table->decimal('price', 8, 2)
                 ->nullable(false);
             $table->string('status')
                 ->nullable(false);

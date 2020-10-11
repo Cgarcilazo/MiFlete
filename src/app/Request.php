@@ -21,6 +21,11 @@ class Request extends Model
         'date',
     ];
 
+    protected $appends = [
+        'origin_full_address',
+        'destination_full_address',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -103,6 +108,9 @@ class Request extends Model
         'clarifications' => 'string',
     ];
 
+    /**
+     * Creation rules for a request
+     */
     public static $creationRules = [
         'description' => 'required|string',
         'province_origin' => 'required|string',
@@ -122,4 +130,45 @@ class Request extends Model
         'is_elevator_destination' => 'nullable|boolean',
         'clarifications' => 'nullable|string',
     ];
+
+    // Relationships
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    // Methods
+
+    /**
+     * Get the origin full address in the correct format
+     */
+    public function getOriginFullAddressAttribute()
+    {
+        $flat = $this->flat_number_origin != '' ? ' - Piso ' . $this->flat_number_origin : '';
+        $flatLetter =  $this->flat_letter_origin != '' ? ' - Dpto ' . $this->flat_letter_origin : '';
+
+        return $this->city_origin . ' - ' . $this->street_origin . ' - ' . $this->street_number_origin
+            .  $flat . $flatLetter;
+    }
+
+    /**
+     * Get the destination full address in the correct format
+     */
+    public function getDestinationFullAddressAttribute()
+    {
+        $flat = $this->flat_number_destination != '' ? ' - Piso ' . $this->flat_number_destination : '';
+        $flatLetter =  $this->flat_letter_destination != '' ? ' - Dpto ' . $this->flat_letter_destination : '';
+
+        return $this->city_destination . ' - ' . $this->street_destination . ' - ' . $this->street_number_destination
+            .  $flat . $flatLetter;
+    }
+
+    /**
+     * Get quantity of replies for the given request
+     */
+    public function getRepliesCountAttribute()
+    {
+        return $this->replies()->count();
+    }
 }
