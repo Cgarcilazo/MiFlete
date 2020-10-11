@@ -226,9 +226,10 @@
 
 <style lang="scss">
   @import 'Assets/_variables.scss';
-  @import 'Assets/_mixins.scss';
+  @import 'Assets/mixins/_flex.scss';
   @import 'Assets/_buttons.scss';
   @import 'Assets/utils/_breakpoints';
+  @import 'Assets/mixins/_background.scss';
 
   .register-view {
     @include flex(row, center, center, wrap);

@@ -17,7 +17,7 @@
 <style lang="scss">
   @import 'Assets/_app.scss';
   @import 'Assets/_variables.scss';
-  @import 'Assets/_mixins.scss';
+  @import 'Assets/mixins/_flex.scss';
   @import 'Assets/_buttons.scss';
 
   html, body {
