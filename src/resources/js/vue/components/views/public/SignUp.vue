@@ -228,7 +228,6 @@
   @import 'Assets/_variables.scss';
   @import 'Assets/_mixins.scss';
   @import 'Assets/_buttons.scss';
-  @import 'Assets/_background';
   @import 'Assets/utils/_breakpoints';
 
   .register-view {

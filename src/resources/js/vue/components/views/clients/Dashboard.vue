@@ -21,10 +21,6 @@
     padding-top: 6.9rem;
   }
 
-  // @include media-breakpoint-down(xl) {
-  //   padding-top: 6.4rem;
-  // }
-
   @include media-breakpoint-down(lg) {
     padding-top: 8.2rem;
   }

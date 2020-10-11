@@ -39,7 +39,6 @@
   @import 'Assets/_mixins.scss';
   @import 'Assets/_buttons.scss';
   @import 'Assets/utils/_breakpoints';
-  @import 'Assets/_background';
 
   .client-home {
     @include flex(row, center, center, wrap);
