@@ -5,15 +5,13 @@
         class="background"
         src="/images/client-home-background.jpg"/>
       <h2 class="page-title">
-        {{ showForm ? 'Registrar solicitud' : 'Administrar solicitudes' }}
+        Administrar solicitudes
       </h2>
     </div>
-    <div
-      v-if="!showForm"
-      class="requests-body container h-100 p-0">
+    <div class="requests-body container h-100 p-0">
       <button
         class="btn secondary"
-        @click="newRequest">
+        @click="goToNewRequest()">
         <font-awesome-icon
           icon="plus"
           size="1x"/>
@@ -21,29 +19,25 @@
       </button>
       <TableRequests/>
     </div>
-    <div
-      v-else
-      class="requests-body container h-100 p-0">
-      <NewRequestForm/>
-    </div>
   </div>
 </template>
 
 <script>
   import TableRequests from 'Components/tables/TableRequests'
   import NewRequestForm from 'Components/forms/NewRequestForm'
+  import { CLIENT_NEW_REQUEST_ROUTE } from 'Constants/clients/routes';
   export default {
-    components: { TableRequests, NewRequestForm },
+    components: { TableRequests },
 
     data() {
       return {
-        showForm: false
+
       }
     },
 
     methods: {
-      newRequest() {
-        this.showForm = true
+      goToNewRequest() {
+        this.$router.push( { name: CLIENT_NEW_REQUEST_ROUTE } )
       }
     }
   }

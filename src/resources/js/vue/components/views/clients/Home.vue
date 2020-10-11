@@ -20,7 +20,8 @@
           Comienza creando tu primera solicitud:
         </p>
 
-        <button class="btn primary">
+        <button class="btn primary"
+                @click="goToNewRequest()">
           Nueva Solicitud
         </button>
       </div>
@@ -29,8 +30,14 @@
 </template>
 
 <script>
-  export default {
+  import { CLIENT_NEW_REQUEST_ROUTE } from 'Constants/clients/routes';
 
+  export default {
+    methods: {
+      goToNewRequest() {
+        this.$router.push( { name: CLIENT_NEW_REQUEST_ROUTE } )
+      }
+    }
   }
 </script>
 
