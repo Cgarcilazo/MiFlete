@@ -25,7 +25,7 @@
           <td>
             <button
               class="btn btn-link"
-              :disabled="request.state !== 'pendiente'"
+              :disabled="request.state !== pending"
               type="button">
               <font-awesome-icon
                 class="navbar-icon"
@@ -35,8 +35,8 @@
             </button>
             <button
               class="btn btn-link"
-              :class="{ 'btn-delete' : request.state === 'realizado' || request.state === 'cancelado' }"
-              :disabled="request.state !== 'realizado' && request.state !== 'cancelado'"
+              :class="{ 'btn-delete' : request.state === done || request.state === canceled }"
+              :disabled="request.state !== done && request.state !== canceled"
               type="button">
               <font-awesome-icon
                 class="navbar-icon"
@@ -52,15 +52,20 @@
 </template>
 
 <script>
+  import { CANCELED, DONE, PENDING, RESERVED } from 'Constants/general/requests'
   export default {
     data() {
       return {
+        canceled: CANCELED,
+        done: DONE,
+        pending: PENDING,
+        reserved: RESERVED,
         fields: ['Origen', 'Destino', 'Fecha', 'Ofertas Recibidas', 'Estado'],
         requests: [
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 3, state: 'reservado'},
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 4, state: 'realizado'},
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 5, state: 'cancelado'},
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 6, state: 'pendiente'}
+          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 3, state: 'Reservado'},
+          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 4, state: 'Realizado'},
+          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 5, state: 'Cancelado'},
+          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 6, state: 'Pendiente'}
         ],
       }
     },
