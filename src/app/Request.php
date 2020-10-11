@@ -106,6 +106,7 @@ class Request extends Model
         'is_elevator_origin' => 'boolean',
         'is_elevator_destination' => 'boolean',
         'clarifications' => 'string',
+        'date' => 'datetime:d-m-Y',
     ];
 
     /**

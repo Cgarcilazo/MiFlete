@@ -1,6 +1,15 @@
 <template>
   <div class="row no-gutters h-100 justify-content-center align-items-center">
-    <table class="table table-striped table-bordered table-hover">
+    <Loader v-if="loading"/>
+
+    <div v-if="!loading && requests.length === 0">
+      <p class="font-weight-bold">
+        Aún no tienes solicitudes cargadas
+      </p>
+    </div>
+
+    <table v-if="!loading && requests.length > 0"
+           class="table table-striped table-bordered table-hover">
       <thead class="table-header">
         <tr>
           <th>Origen</th>
@@ -17,11 +26,11 @@
         <tr
           v-for="(request, index) in requests"
           :key="index">
-          <td>{{ request.origin }}</td>
-          <td>{{ request.destination }}</td>
+          <td>{{ request['origin_full_address'] }}</td>
+          <td>{{ request['destination_full_address'] }}</td>
           <td>{{ request.date }}</td>
-          <td>{{ request.offers }}</td>
-          <td>{{ request.state }}</td>
+          <td>{{ request['replies_count'] }}</td>
+          <td>{{ request.status }}</td>
           <td>
             <button
               class="btn btn-link"
@@ -53,7 +62,14 @@
 
 <script>
   import { CANCELED, DONE, PENDING, RESERVED } from 'Constants/general/requests'
+  import { mapState } from 'vuex';
+  import Loader from 'Components/resources/Loader';
+
   export default {
+    components: {
+      Loader,
+    },
+
     data() {
       return {
         canceled: CANCELED,
@@ -61,15 +77,21 @@
         pending: PENDING,
         reserved: RESERVED,
         fields: ['Origen', 'Destino', 'Fecha', 'Ofertas Recibidas', 'Estado'],
-        requests: [
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 3, state: 'Reservado'},
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 4, state: 'Realizado'},
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 5, state: 'Cancelado'},
-          { origin: 'Resistencia-25 de Mayo 1235', destination: 'Resistencia- 9 de Julio 315', date: '12-10-2020', offers: 6, state: 'Pendiente'}
-        ],
+        loading: false,
       }
     },
 
+    computed: {
+      ...mapState('requests', [
+        'requests',
+      ])
+    },
+
+    created () {
+      this.loading = true;
+      this.$store.dispatch('requests/fetchAll')
+        .finally(() => this.loading = false);
+    },
   }
 </script>
 

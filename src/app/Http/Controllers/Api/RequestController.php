@@ -29,7 +29,7 @@ class RequestController extends BaseApi
         }
 
         return $package->setMessage('Lista de Solicitudes')
-            ->setData('solicitud', $clientRequests)
+            ->setData('requests', $clientRequests)
             ->toResponse();
     }
 
@@ -86,7 +86,7 @@ class RequestController extends BaseApi
 
         DB::commit();
         return $package->setMessage('Solicitud Creada')
-            ->setData('solicitud', $clientRequest)
+            ->setData('request', $clientRequest)
             ->toResponse();
     }
 }
