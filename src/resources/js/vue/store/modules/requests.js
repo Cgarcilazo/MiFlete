@@ -34,6 +34,19 @@ export const actions = {
         })
     });
   },
+
+  create ({rootGetters}, payload) {
+    return new Promise((resolve, reject) => {
+      const userId = rootGetters['users/getUser'].id || null;
+      axios.post(`/api/v1/users/${userId}/requests`, payload)
+        .then(() => {
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  }
 };
 
 export default {

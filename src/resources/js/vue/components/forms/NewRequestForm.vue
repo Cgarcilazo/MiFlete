@@ -1,7 +1,8 @@
 <template>
   <ValidationObserver
-    v-slot="{ }"
-    slim>
+    v-slot="{ invalid }"
+    tag="form"
+    @submit.prevent="onSubmit">
     <div class="row">
       <div class="from col-6">
         <h2>Desde</h2>
@@ -19,7 +20,7 @@
               <input
                 id="provincia-desde"
                 v-model="payload['province_origin']"
-                type="email"
+                type="text"
                 class="form-control"
                 :class="{ 'has-errors': errors.length }"
                 placeholder="Seleccionar Provincia"/>
@@ -32,7 +33,7 @@
             v-slot="{ errors }"
             tag="div"
             name="ciudad-desde"
-            class="validator-provider"
+            class="validator-provider mt-4"
             rules="required">
             <label for="ciudad-desde">
               Ciudad *
@@ -41,7 +42,7 @@
               <input
                 id="ciudad-desde"
                 v-model="payload['city_origin']"
-                type="email"
+                type="text"
                 class="form-control"
                 :class="{ 'has-errors': errors.length }"
                 placeholder="Seleccionar Ciudad"/>
@@ -52,7 +53,9 @@
           </ValidationProvider>
           <ValidationProvider
             v-slot="{ errors }"
+            tag="div"
             name="calle-desde"
+            class="mt-4"
             rules="required">
             <label for="calle-desde">
               Calle *
@@ -67,7 +70,7 @@
               {{ errors[0] }}
             </span>
           </ValidationProvider>
-          <div class="row no-gutters address-info">
+          <div class="row no-gutters address-info mt-4">
             <ValidationProvider
               v-slot="{ errors }"
               name="numero-desde"
@@ -102,9 +105,10 @@
                 {{ errors[0] }}
               </span>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ errors }"
-                                name="departamento-desde"
-                                rules="">
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="departamento-desde"
+              rules="">
               <label for="departamento-desde">
                 Dpto.
               </label>
@@ -121,8 +125,10 @@
           </div>
           <ValidationProvider
             v-slot="{ errors }"
+            class="mt-4"
             name="fecha"
-            rules="required">
+            rules="required"
+            tag="div">
             <label for="fecha">
               Fecha *
             </label>
@@ -136,35 +142,38 @@
               {{ errors[0] }}
             </span>
           </ValidationProvider>
-          <div class="form-check">
-            <input
-              id="hora-desde"
-              class="form-check-input"
-              type="radio"
-              name="opciones-hora"
-              value="option1"/>
-            <label
-              class="form-check-label"
-              for="hora-desde">
-              Hora
+          <ValidationProvider
+            v-slot="{ errors }"
+            class="mt-4"
+            name="hora-pref"
+            rules=""
+            tag="div">
+            <label>
+              Hora preferencial
             </label>
-            <VueTimepicker></VueTimepicker>
-          </div>
-          <div class="form-check">
-            <input
-              id="rango-desde"
-              class="form-check-input"
-              type="radio"
-              name="opciones-hora"
-              value="option2"/>
-            <label
-              class="form-check-label"
-              for="rango-desde">
+            <VueTimepicker
+              v-model="payload.preferred_hour"/>
+            <span class="red-text">
+              {{ errors[0] }}
+            </span>
+          </ValidationProvider>
+          <ValidationProvider
+            v-slot="{ errors }"
+            class="mt-4"
+            name="rango-horario"
+            rules=""
+            tag="div">
+            <label>
               Rango horario
             </label>
-            <VueTimepicker></VueTimepicker>
-            <VueTimepicker></VueTimepicker>
-          </div>
+            <VueTimepicker
+              v-model="payload.range_hour_from"/>
+            <VueTimepicker
+              v-model="payload.range_hour_to"/>
+            <span class="red-text">
+              {{ errors[0] }}
+            </span>
+          </ValidationProvider>
         </div>
       </div>
       <div class="to col-6">
@@ -183,7 +192,7 @@
               <input
                 id="provincia-hasta"
                 v-model="payload['province_destination']"
-                type="email"
+                type="text"
                 class="form-control"
                 :class="{ 'has-errors': errors.length }"
                 placeholder="Seleccionar Provincia"/>
@@ -196,7 +205,7 @@
             v-slot="{ errors }"
             tag="div"
             name="ciudad-hasta"
-            class="validator-provider"
+            class="validator-provider mt-4"
             rules="required">
             <label for="ciudad-hasta">
               Ciudad *
@@ -205,7 +214,7 @@
               <input
                 id="ciudad-hasta"
                 v-model="payload['city_destination']"
-                type="email"
+                type="text"
                 class="form-control"
                 :class="{ 'has-errors': errors.length }"
                 placeholder="Seleccionar Ciudad"/>
@@ -216,8 +225,10 @@
           </ValidationProvider>
           <ValidationProvider
             v-slot="{ errors }"
+            class="mt-4"
             name="calle-hasta"
-            rules="required">
+            rules="required"
+            tag="div">
             <label for="calle-hasta">
               Calle *
             </label>
@@ -231,7 +242,7 @@
               {{ errors[0] }}
             </span>
           </ValidationProvider>
-          <div class="row no-gutters address-info">
+          <div class="row no-gutters address-info mt-4">
             <ValidationProvider
               v-slot="{ errors }"
               name="numero-hasta"
@@ -287,11 +298,150 @@
         </div>
       </div>
     </div>
+    <div>
+      <h2 class="mt-5">
+        Describa lo que desea transportar
+      </h2>
+      <div class="block-form">
+        <ValidationProvider
+          v-slot="{ errors }"
+          tag="div"
+          name="descripcion"
+          class="validator-provider"
+          rules="required">
+          <div class="input-group">
+            <textarea
+              v-model="payload.description"
+              class="form-control"
+              :class="{ 'has-errors': errors.length }"></textarea>
+          </div>
+          <span class="red-text">
+            {{ errors[0] }}
+          </span>
+        </ValidationProvider>
+      </div>
+      <h2 class="mt-5">
+        Detalles adicionales
+      </h2>
+      <div class="block-form">
+        <div class="form-group form-check">
+          <input
+            id="operarios"
+            v-model="payload['need_more_carriers']"
+            type="checkbox"
+            class="form-check-input"/>
+          <label
+            class="form-check-label"
+            for="operarios">Se precisan dos o más operarios</label>
+        </div>
+
+        <label for="ascensor-origen">
+          ¿Hay ascensor en origen?
+        </label>
+        <div class="d-flex">
+          <div
+            id="ascensor-origen"
+            class="custom-control custom-radio custom-control-inline">
+            <input
+              id="si-origen"
+              v-model="payload['is_elevator_origin']"
+              type="radio"
+              name="ascensor-origen"
+              class="custom-control-input"
+              :value="true"/>
+            <label
+              class="custom-control-label"
+              for="si-origen">Si</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              id="no-origen"
+              v-model="payload['is_elevator_origin']"
+              type="radio"
+              name="ascensor-origen"
+              class="custom-control-input"
+              :value="false"/>
+            <label
+              class="custom-control-label"
+              for="no-origen">No</label>
+          </div>
+        </div>
+        <div class="ascensor-radio mt-4">
+          <label for="ascensor-destination">
+            ¿Hay ascensor en destino?
+          </label>
+          <div class="d-flex">
+            <div
+              id="ascensor-destino"
+              class="custom-control custom-radio custom-control-inline">
+              <input
+                id="si-destino"
+                v-model="payload['is_elevator_destination']"
+                type="radio"
+                name="ascensor-destino"
+                class="custom-control-input"
+                :value="true"/>
+              <label
+                class="custom-control-label"
+                for="si-destino">Si</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                id="no-destino"
+                v-model="payload['is_elevator_destination']"
+                type="radio"
+                name="ascensor-destino"
+                class="custom-control-input"
+                :value="false"/>
+              <label
+                class="custom-control-label"
+                for="no-destino">No</label>
+            </div>
+          </div>
+        </div>
+        <ValidationProvider
+          v-slot="{ errors }"
+          tag="div"
+          name="aclaraciones"
+          class="validator-provider mt-4"
+          rules="">
+          <label for="aclaraciones">
+            Instrucciones o aclaraciones importantes
+          </label>
+          <div class="input-group">
+            <textarea
+              id="aclaraciones"
+              v-model="payload.clarifications"
+              class="form-control"
+              :class="{ 'has-errors': errors.length }"></textarea>
+          </div>
+          <span class="red-text">
+            {{ errors[0] }}
+          </span>
+        </ValidationProvider>
+      </div>
+    </div>
+    <div class="d-flex my-5 justify-content-center">
+      <button
+        type="submit"
+        :disabled="invalid || saving"
+        class="btn primary mx-3">
+        Solicitar
+      </button>
+      <button
+        type="button"
+        class="btn outline mx-3"
+        @click="goBack()">
+        Cancelar
+      </button>
+    </div>
   </ValidationObserver>
 </template>
 
 <script>
-  import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue'
+  import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
+  import { CLIENT_REQUESTS_ROUTE } from 'Constants/clients/routes';
+  import helpers from 'Base/utils/helpers';
 
   export default {
     components: { VueTimepicker },
@@ -301,23 +451,52 @@
         payload: {
           city_destination: '',
           city_origin: '',
+          clarifications: '',
           date: '',
           description: '',
           flat_letter_destination: '',
           flat_letter_origin: '',
           flat_number_destination: '',
           flat_number_origin: '',
+          is_elevator_origin: false,
+          is_elevator_destination: false,
           need_more_carriers: '',
           preferred_hour: '',
           province_destination: '',
           province_origin: '',
           range_hour_from: '',
-          rante_hour_to: '',
+          range_hour_to: '',
           street_destination: '',
           street_origin: '',
           street_number_destination: '',
           street_number_origin: '',
+          time: '',
+          saving: false
         }
+      }
+    },
+
+    methods: {
+      goBack() {
+        this.$router.push({ name: CLIENT_REQUESTS_ROUTE });
+      },
+
+      onSubmit () {
+        this.saving = true
+        this.$store.dispatch('requests/create', this.payload)
+          .then(() => {
+            this.$toast.success('Solicitud creada correctamente');
+            this.goBack();
+          })
+          .catch((error) => {
+            if (error.response.data.data.errors != null) {
+              let errorList = helpers.handleResponseErrors(error.response.data.data.errors);
+              this.$toast.error(errorList[0]);
+            } else {
+              this.$toast.error(error.response.data.error);
+            }
+          })
+          .finally(() => this.saving = false )
       }
     }
   }
@@ -326,23 +505,35 @@
 <style lang="scss">
   @import 'Assets/_variables.scss';
 
-.block-form {
-  border: 1px solid $grey;
-  border-radius: $radius;
-  padding: 2rem 2.5rem;
-  height: 100%;
+    .block-form {
+      border: 1px solid $grey;
+      border-radius: $radius;
+      padding: 2rem 2.5rem;
 
-  .address-info {
-    flex-direction: row;
-    justify-content: space-between;
+      .address-info {
+        flex-direction: row;
+        justify-content: space-between;
 
-    .input-group {
-      width: 30%;
+        .input-group {
+          width: 30%;
+        }
+
+        span {
+          width: 30%;
+        }
+      }
+
+      .ascensor-radio {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .time-picker {
+        .display-time {
+          border-radius: $radius;
+        }
+      }
+
     }
 
-    span {
-      width: 30%;
-    }
-  }
-}
 </style>
