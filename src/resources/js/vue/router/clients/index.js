@@ -1,8 +1,7 @@
 'use strict';
 
 //Route names
-import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE } from 'Constants/clients/routes';
-import { EDIT_USER } from 'Constants/general/routes';
+import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE, EDIT_USER_CLIENT } from 'Constants/clients/routes';
 
 //Components
 import Home from 'Components/views/clients/Home';
@@ -44,7 +43,7 @@ const routes = [
     }
   },
   {
-    name: EDIT_USER,
+    name: EDIT_USER_CLIENT,
     path: 'edit',
     component: EditUser,
     meta: {

@@ -192,6 +192,7 @@
   import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE, EDIT_USER } from 'Constants/general/routes';
   import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE } from 'Constants/clients/routes';
   import { CARRIER_HOME_ROUTE } from 'Constants/carriers/routes';
+  import { getEditPage } from 'Base/utils/redirects';
 
   export default {
     components: { UserMenu },
@@ -217,7 +218,7 @@
       },
 
       editUser () {
-        this.$router.push({ name: EDIT_USER });
+        this.$router.push(getEditPage());
       },
     }
   }

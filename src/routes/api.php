@@ -24,5 +24,8 @@ Route::group(['prefix' => '/v1'], function () {
 
         // Requests
         Route::resource('users/{user}/requests', 'RequestController');
+
+        // Users
+        Route::resource('users', 'UserController')->except(['create', 'store', 'show']);
     });
 });

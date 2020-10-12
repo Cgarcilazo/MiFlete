@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BaseApi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ResponsePackage;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -127,6 +128,36 @@ class UserController extends BaseApi
         $user = $this->user();
 
         return $package
+            ->setData('user', $user)
+            ->toResponse();
+    }
+
+    /**
+     * Edit the current user account
+     */
+    public function update(User $user, EditUserRequest $request)
+    {
+        $package = new ResponsePackage();
+
+        DB::beginTransaction();
+        try {
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->phone_number = $request->phone_number;
+
+            if (!empty($request->password)) {
+                $user->password = Hash::make($request->password);
+            }
+
+            $user->save();
+        } catch (\Throwable $th) {
+            return $package->setError('No es posible actualizar los datos')
+                ->toResponse();
+        }
+
+        DB::commit();
+        return $package->setMessage('Datos actualizados correctamente')
             ->setData('user', $user)
             ->toResponse();
     }

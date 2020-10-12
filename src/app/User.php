@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Validation\Rule;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -80,6 +81,14 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Login rules for one user
+     */
+    public static $loginRules = [
+        'email' => 'required|string',
+        'password' => 'required|string',
+    ];
+
+    /**
      * Creation rules for one user
      */
     public static $creationRules = [
@@ -91,6 +100,25 @@ class User extends Authenticatable implements JWTSubject
         'phone_number' => 'string|nullable',
         'is_client' => 'required|boolean',
     ];
+
+    /**
+     * Creation rules for one user
+     */
+    public static function editRules($user)
+    {
+        return [
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => [
+                'required',
+                'string',
+                Rule::unique('users')->ignore($user->id)
+            ],
+            'password' => 'nullable|string',
+            'confirm_password' => 'nullable|string|same:password',
+            'phone_number' => 'string|nullable',
+        ];
+    }
 
     /**
      * Creation messages
@@ -111,14 +139,6 @@ class User extends Authenticatable implements JWTSubject
         'phone_number.string' => 'El número de teléfono debe ser un string',
         'is_client.required' => 'Debe indicar si es cliente o transportista',
         'is_client.boolean' => 'Debe proporcionar un valor booleano indicando si es cliente o transportista',
-    ];
-
-    /**
-     * Login rules for one user
-     */
-    public static $loginRules = [
-        'email' => 'required|string',
-        'password' => 'required|string',
     ];
 
     // Relationships

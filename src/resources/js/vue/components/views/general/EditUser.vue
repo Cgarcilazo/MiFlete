@@ -18,7 +18,7 @@
                                 name="nombres"
                                 rules="required">
               <label for="nombres">
-                Nombres *
+                Nombres
               </label>
               <input id="nombres"
                      v-model="form['first_name']"
@@ -36,7 +36,7 @@
                                 name="apellidos"
                                 rules="required">
               <label for="nombres">
-                Apellidos *
+                Apellidos
               </label>
               <input id="apellidos"
                      v-model="form['last_name']"
@@ -54,7 +54,7 @@
                                 name="email"
                                 rules="required|email">
               <label for="email">
-                Email *
+                Email
               </label>
               <input id="email"
                      v-model="form.email"
@@ -89,9 +89,9 @@
             <ValidationProvider v-slot="{ errors }"
                                 vid="contrasena"
                                 name="contrasena"
-                                rules="required">
+                                rules="">
               <label for="contrasena">
-                Contraseña *
+                Nueva contraseña
               </label>
               <input id="contrasena"
                      v-model="form.password"
@@ -107,9 +107,9 @@
           <div class="form-group col-12 col-md-6">
             <ValidationProvider v-slot="{ errors }"
                                 name="contrasena_conf"
-                                rules="required|confirmed:contrasena">
+                                :rules="{ required:form.password != '', confirmed: 'contrasena' }">
               <label for="contrasena_conf">
-                Confirme contraseña *
+                Confirme contraseña
               </label>
               <input id="contrasena_conf"
                      v-model="form['confirm_password']"
@@ -126,7 +126,14 @@
             <button class="btn primary mb-1"
                     type="submit"
                     :disabled="invalid || fetching">
-              Editar
+              Guardar
+            </button>
+
+            <button class="btn outline mb-1"
+                    type="submit"
+                    :disabled="invalid || fetching"
+                    @click="goToHomePage">
+              Cancelar
             </button>
           </div>
         </form>
@@ -138,6 +145,7 @@
 <script>
   import helpers from 'Base/utils/helpers';
   import { getHomePage } from 'Base/utils/redirects';
+  import { mapGetters } from 'vuex';
 
   export default {
     data () {
@@ -155,13 +163,23 @@
       }
     },
 
+    computed: {
+      ...mapGetters('users', [
+        'getUser',
+      ]),
+    },
+
+    created () {
+      this.initFormData();
+    },
+
     methods: {
       onSubmit () {
         this.fetching = true;
 
-        this.$store.dispatch('users/register', this.form)
+        this.$store.dispatch('users/edit', this.form)
           .then(response => {
-            this.$router.replace(getHomePage());
+            this.$toast.success(response.data.message);
           })
           .catch(error => {
             if (error.response.data.data.errors != null) {
@@ -174,6 +192,20 @@
           .finally(() => {
             this.fetching = false;
           });
+      },
+
+      initFormData () {
+        this.form.is_client = this.getUser.is_client || true;
+        this.form.first_name = this.getUser.first_name || '';
+        this.form.last_name = this.getUser.last_name || '';
+        this.form.email = this.getUser.email || '';
+        this.form.phone_number = this.getUser.phone_number || '';
+        this.form.password = this.getUser.password || '';
+        this.form.confirm_password = this.getUser.confirm_password || '';
+      },
+
+      goToHomePage () {
+        this.$router.push(getHomePage());
       },
     },
   }
@@ -212,6 +244,7 @@
       z-index: 1;
       opacity: 1;
       border-radius: $radius;
+      margin-top: 3rem;
 
       @include media-breakpoint-down(xl) {
         width: 45%;
@@ -241,6 +274,14 @@
 
       .form {
         width: 100%;
+
+        .primary {
+          margin-right: 15px;
+        }
+
+        .outline {
+          margin-left: 15px;
+        }
       }
     }
   }

@@ -5,7 +5,6 @@ export const LOGIN_ROUTE = 'login';
 export const SIGN_UP_ROUTE = 'signUp';
 export const CLIENTS_ROUTE = 'clients';
 export const CARRIERS_ROUTE = 'carriers';
-export const EDIT_USER = 'editUser';
 
 export default {
     LANDING_ROUTE,
@@ -13,5 +12,4 @@ export default {
     SIGN_UP_ROUTE,
     CLIENTS_ROUTE,
     CARRIERS_ROUTE,
-    EDIT_USER,
 }

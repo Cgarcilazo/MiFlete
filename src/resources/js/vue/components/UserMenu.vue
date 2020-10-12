@@ -52,7 +52,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import  { EDIT_USER } from 'Constants/general/routes';
+  import { getEditPage } from 'Base/utils/redirects';
 
   export default {
     computed: {
@@ -65,7 +65,7 @@
       },
 
       editUser () {
-        this.$router.push({ name: EDIT_USER });
+        this.$router.push(getEditPage());
       },
     }
   }

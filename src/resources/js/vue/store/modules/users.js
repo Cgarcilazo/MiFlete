@@ -109,6 +109,21 @@ export const actions = {
         })
     });
   },
+
+  edit ({ commit, rootGetters }, payload) {
+    return new Promise((resolve, reject) => {
+      const userId = rootGetters['users/getUser'].id || null;
+      axios.put(`/api/v1/users/${userId}`, payload)
+        .then(response => {
+          const user = response.data.data.user;
+          commit('setUser', user);
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        })
+    });
+  },
 };
 
 export default {
