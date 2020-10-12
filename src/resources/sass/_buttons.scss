@@ -26,6 +26,11 @@ button {
     font-weight: $bold;
     color: $green;
     border: 1px solid $green;
+    margin: 1rem 0;
+
+    &:hover {
+      color: $light-green !important;
+    }
   }
 
   &.btn-link {
