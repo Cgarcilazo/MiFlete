@@ -80,7 +80,8 @@
               v-if="isAuthenticated"/>
           </li>
           <hr class="line"/>
-          <li class="nav-item user-menu-sm">
+          <li class="nav-item user-menu-sm"
+              @click="editUser">
             <div class="nav-link">
               <font-awesome-icon
                 class="navbar-icon"
@@ -159,7 +160,8 @@
               v-if="isAuthenticated"/>
           </li>
           <hr class="line"/>
-          <li class="nav-item user-menu-sm">
+          <li class="nav-item user-menu-sm"
+              @click="editUser">
             <div class="nav-link">
               <font-awesome-icon
                 class="navbar-icon"
@@ -187,9 +189,10 @@
 <script>
   import { mapGetters } from 'vuex'
   import UserMenu from 'Components/UserMenu'
-  import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE } from 'Constants/general/routes'
+  import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE, EDIT_USER } from 'Constants/general/routes';
   import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE } from 'Constants/clients/routes';
   import { CARRIER_HOME_ROUTE } from 'Constants/carriers/routes';
+  import { getEditPage } from 'Base/utils/redirects';
 
   export default {
     components: { UserMenu },
@@ -212,7 +215,11 @@
     methods: {
       logout () {
         this.$store.commit('users/logout');
-      }
+      },
+
+      editUser () {
+        this.$router.push(getEditPage());
+      },
     }
   }
 </script>

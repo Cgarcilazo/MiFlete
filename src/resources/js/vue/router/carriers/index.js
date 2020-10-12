@@ -1,7 +1,8 @@
 'use strict';
 
 //Route names
-import { CARRIER_HOME_ROUTE } from 'Constants/carriers/routes';
+import { CARRIER_HOME_ROUTE, EDIT_USER_CARRIER } from 'Constants/carriers/routes';
+import EditUser from 'Components/views/general/EditUser';
 
 //Components
 import Home from 'Components/views/carriers/Home';
@@ -21,6 +22,14 @@ const routes = [
     meta: {
       public: false,
     },
+  },
+  {
+    name: EDIT_USER_CARRIER,
+    path: 'edit',
+    component: EditUser,
+    meta: {
+      public: false,
+    }
   },
 ];
 
