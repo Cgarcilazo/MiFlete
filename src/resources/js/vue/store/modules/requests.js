@@ -37,15 +37,12 @@ export const actions = {
 
   create ({rootGetters}, payload) {
     return new Promise((resolve, reject) => {
-      console.log('here')
       const userId = rootGetters['users/getUser'].id || null;
       axios.post(`/api/v1/users/${userId}/requests`, payload)
         .then(() => {
-          console.log('and here')
           resolve();
         })
         .catch((error) => {
-          console.log('or here')
           reject(error);
         })
     });
