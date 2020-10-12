@@ -136,7 +136,6 @@
               id="fecha"
               v-model="payload.date"
               type="date"
-              :min="minDate"
               class="form-control"
               :class="{ 'has-errors': errors.length }"/>
             <span class="red-text">
