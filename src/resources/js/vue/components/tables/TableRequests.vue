@@ -34,7 +34,7 @@
           <td>
             <button
               class="btn btn-link"
-              :disabled="request.state !== pending"
+              :disabled="request.status !== pending"
               type="button">
               <font-awesome-icon
                 class="navbar-icon"
@@ -44,8 +44,8 @@
             </button>
             <button
               class="btn btn-link"
-              :class="{ 'btn-delete' : request.state === done || request.state === canceled }"
-              :disabled="request.state !== done && request.state !== canceled"
+              :class="{ 'btn-delete' : request.status === done || request.status === canceled }"
+              :disabled="request.status !== done && request.status !== canceled"
               type="button">
               <font-awesome-icon
                 class="navbar-icon"
