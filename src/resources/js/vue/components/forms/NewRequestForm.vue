@@ -424,7 +424,7 @@
     <div class="d-flex my-5 justify-content-center">
       <button
         type="submit"
-        :disabled="invalid"
+        :disabled="invalid || saving"
         class="btn primary mx-3">
         Solicitar
       </button>
@@ -470,7 +470,8 @@
           street_origin: '',
           street_number_destination: '',
           street_number_origin: '',
-          time: ''
+          time: '',
+          saving: false
         }
       }
     },
@@ -481,6 +482,7 @@
       },
 
       onSubmit () {
+        this.saving = true
         this.$store.dispatch('requests/create', this.payload)
           .then(() => {
             this.$toast.success('Solicitud creada correctamente');
@@ -494,6 +496,7 @@
               this.$toast.error(error.response.data.error);
             }
           })
+          .finally(() => this.saving = false )
       }
     }
   }
