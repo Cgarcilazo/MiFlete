@@ -471,8 +471,8 @@
           street_number_destination: '',
           street_number_origin: '',
           time: '',
-          saving: false
-        }
+        },
+        saving: false
       }
     },
 
