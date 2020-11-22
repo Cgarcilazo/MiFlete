@@ -5,7 +5,7 @@ import router from './vue/router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBoxOpen, faKey, faTruck, faUserPlus, faSignInAlt, faSignOutAlt, faCheck, faClipboardList,
-  faEdit, faAngleRight, faSearchDollar, faUsers, faHome, faPlus, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+  faEdit, faAngleRight, faSearchDollar, faUsers, faHome, faPlus, faExternalLinkAlt, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope, faUser, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import validationRules from 'Base/validator';
@@ -13,10 +13,11 @@ import store from 'Base/store';
 import Toast from "vue-toastification";
 import 'vue-toastification/dist/index.css';
 import { requestInterceptor, responseInterceptor } from 'Base/services/interceptors';
+import VueSimpleAlert from "vue-simple-alert";
 
 library.add(faBoxOpen, faEnvelope, faUser, faKey, faTruck, faUserPlus, faSignInAlt, faCheck,
   faClipboardList, faEdit, faAngleRight, faSearchDollar, faUsers, faSignOutAlt, faHome, faPlus,
-  faTrashAlt, faExternalLinkAlt);
+  faTrashAlt, faExternalLinkAlt, faTimesCircle);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationProvider', ValidationProvider);
@@ -36,7 +37,8 @@ Vue.use(Toast, {
   closeButton: 'button',
   icon: true,
   rtl: false
-})
+});
+Vue.use(VueSimpleAlert);
 
 const vm = new Vue({
   router,

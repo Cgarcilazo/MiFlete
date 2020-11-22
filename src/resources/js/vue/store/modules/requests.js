@@ -66,7 +66,20 @@ export const actions = {
           reject(error);
         })
     });
-  }
+  },
+
+  cancel ({ rootGetters }, payload) {
+    const userId = rootGetters['users/getUser'].id || null;
+    return new Promise((resolve, reject) => {
+      axios.put(`/api/v1/users/${userId}/app-requests/${payload.id}/cancel`)
+        .then(() => {
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  },
 };
 
 export default {
