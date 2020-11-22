@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Request;
+use App\AppRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequestForClient extends FormRequest
@@ -24,6 +24,6 @@ class CreateRequestForClient extends FormRequest
      */
     public function rules()
     {
-        return Request::$creationRules;
+        return AppRequest::$creationRules;
     }
 }

@@ -23,7 +23,7 @@ export const actions = {
   fetchAll ({ commit, rootGetters }) {
     return new Promise((resolve, reject) => {
       const userId = rootGetters['users/getUser'].id || null;
-      axios.get(`/api/v1/users/${userId}/requests`)
+      axios.get(`/api/v1/users/${userId}/app-requests`)
         .then((response) => {
           const requests = response.data.data.requests || [];
           commit('setRequests', requests);
@@ -38,7 +38,7 @@ export const actions = {
   create ({rootGetters}, payload) {
     return new Promise((resolve, reject) => {
       const userId = rootGetters['users/getUser'].id || null;
-      axios.post(`/api/v1/users/${userId}/requests`, payload)
+      axios.post(`/api/v1/users/${userId}/app-requests`, payload)
         .then(() => {
           resolve();
         })

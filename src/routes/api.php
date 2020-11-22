@@ -23,7 +23,10 @@ Route::group(['prefix' => '/v1'], function () {
         Route::get('/getUser', 'UserController@getUser');
 
         // Requests
-        Route::resource('users/{user}/requests', 'RequestController');
+        Route::get('/users/{user}/app-requests/all-pending', 'RequestController@getAllPending');
+        Route::put('/users/{user}/app-requests/{appRequest}/cancel', 'RequestController@cancel');
+
+        Route::resource('users/{user}/app-requests', 'RequestController');
 
         // Users
         Route::resource('users', 'UserController')->except(['create', 'store', 'show']);
