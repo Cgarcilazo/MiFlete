@@ -123,7 +123,7 @@
             <router-link
               class="nav-link"
               exact
-              :to="{ name: landing }">
+              :to="{ name: carrierRequests }">
               <font-awesome-icon
                 class="navbar-icon"
                 icon="clipboard-list"
@@ -191,7 +191,7 @@
   import UserMenu from 'Components/UserMenu'
   import  { SIGN_UP_ROUTE, LOGIN_ROUTE, LANDING_ROUTE, EDIT_USER } from 'Constants/general/routes';
   import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE } from 'Constants/clients/routes';
-  import { CARRIER_HOME_ROUTE } from 'Constants/carriers/routes';
+  import { CARRIER_HOME_ROUTE, CARRIER_REQUESTS_ROUTE } from 'Constants/carriers/routes';
   import { getEditPage } from 'Base/utils/redirects';
 
   export default {
@@ -205,6 +205,7 @@
         clientHome: CLIENT_HOME_ROUTE,
         clientRequests: CLIENT_REQUESTS_ROUTE,
         carrierHome: CARRIER_HOME_ROUTE,
+        carrierRequests: CARRIER_REQUESTS_ROUTE,
       }
     },
 

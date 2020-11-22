@@ -89,7 +89,7 @@
 
     created () {
       this.loading = true;
-      this.$store.dispatch('requests/fetchAll')
+      this.$store.dispatch('requests/fetchAllByClient')
         .finally(() => this.loading = false);
     },
   }

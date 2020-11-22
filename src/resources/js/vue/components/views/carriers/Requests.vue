@@ -5,25 +5,17 @@
         class="background"
         src="/images/client-home-background.jpg"/>
       <h2 class="page-title">
-        Administrar solicitudes
+        Todas las solicitudes
       </h2>
     </div>
     <div class="requests-body container h-100 p-0">
-      <button
-        class="btn secondary"
-        @click="goToNewRequest()">
-        <font-awesome-icon
-          icon="plus"
-          size="1x"/>
-        Nueva Solicitud
-      </button>
       <TableRequests/>
     </div>
   </div>
 </template>
 
 <script>
-  import TableRequests from 'Components/tables/clients/TableRequests'
+  import TableRequests from 'Components/tables/carriers/TableRequests'
   import { CLIENT_NEW_REQUEST_ROUTE } from 'Constants/clients/routes';
   export default {
     components: { TableRequests },
@@ -33,12 +25,6 @@
 
       }
     },
-
-    methods: {
-      goToNewRequest() {
-        this.$router.push( { name: CLIENT_NEW_REQUEST_ROUTE } )
-      }
-    }
   }
 </script>
 
