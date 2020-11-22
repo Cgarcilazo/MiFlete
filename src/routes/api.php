@@ -30,5 +30,12 @@ Route::group(['prefix' => '/v1'], function () {
 
         // Users
         Route::resource('users', 'UserController')->except(['create', 'store', 'show']);
+
+        // Replies - Requests
+        Route::put('users/{user}/app-requests/{appRequest}/replies/{reply}/accept', 'ReplyRequestController@accept');
+        Route::resource('users/{user}/app-requests/{appRequest}/replies', 'ReplyRequestController');
+
+        // Replies
+        Route::put('/users/{user}/replies/{reply}/cancel', 'ReplyController@cancel');
     });
 });

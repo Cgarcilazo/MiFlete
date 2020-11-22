@@ -152,6 +152,7 @@ class UserController extends BaseApi
 
             $user->save();
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $package->setError('No es posible actualizar los datos')
                 ->toResponse();
         }
