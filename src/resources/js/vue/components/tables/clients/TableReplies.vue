@@ -28,6 +28,17 @@
           <td>{{ reply['description'] || '-' }}</td>
           <td>{{ reply.status }}</td>
           <td>
+            <button
+              class="btn btn-link p-1"
+              :disabled="reply.status !== pending"
+              type="button"
+              @click="acceptReply(reply)">
+              <font-awesome-icon
+                class="navbar-icon"
+                :icon="['far', 'check-circle']"
+                size="1x"/>
+              Aceptar
+            </button>
           </td>
         </tr>
       </tbody>
@@ -74,6 +85,34 @@
         this.loading = true;
         this.$store.dispatch('requests/fetchReplies', this.$route.params.id || null)
           .finally(() => this.loading = false);
+      },
+
+      acceptReply (reply) {
+        this.$confirm('Estás a punto de aceptar esta oferta, ¿Deseas continuar?', 'Atención', 'warning', {
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar'
+        })
+          .then(() => {
+            this.posting = true;
+            const payload = {
+              requestId: this.$route.params.id,
+              replyId: reply.id
+            }
+            this.$store.dispatch('requests/acceptReply', payload)
+              .then(() => {
+                this.$toast.success('Oferta aceptada');
+                this.fetchReplies();
+              })
+              .catch((error) => {
+                if (error.response.data.data.errors != null) {
+                  let errorList = helpers.handleResponseErrors(error.response.data.data.errors);
+                  this.$toast.error(errorList[0]);
+                } else {
+                  this.$toast.error(error.response.data.error);
+                }
+              })
+              .finally(() => this.posting = false);
+          })
       },
     },
   }
