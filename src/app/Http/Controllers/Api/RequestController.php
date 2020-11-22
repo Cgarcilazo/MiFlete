@@ -160,7 +160,6 @@ class RequestController extends BaseApi
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            die(var_dump($th->getMessage()));
             return $package->setError('Hubo un problema editando la solicitud, contacte un administrador', BaseApi::HTTP_CONFLICT)
                 ->toResponse();
         }
