@@ -1,5 +1,5 @@
 <template>
-  <div class="row no-gutters h-100 justify-content-center align-items-center">
+  <div class="row no-gutters justify-content-center">
     <Loader v-if="loading"/>
 
     <div v-if="!loading && requests.length === 0">
@@ -44,6 +44,17 @@
             </button>
             <button
               class="btn btn-link p-1"
+              :disabled="request['replies_count'] === 0 || request.status == canceled"
+              type="button"
+              @click="goToReplies(request)">
+              <font-awesome-icon
+                class="navbar-icon"
+                :icon="['fas', 'external-link-alt']"
+                size="1x"/>
+              Ver ofertas
+            </button>
+            <button
+              class="btn btn-link p-1"
               :class="{ 'btn-delete' : request.status == pending }"
               :disabled="!(request.status == pending)"
               type="button"
@@ -77,6 +88,7 @@
   import { mapState } from 'vuex';
   import Loader from 'Components/resources/Loader';
   import helpers from 'Base/utils/helpers';
+  import { CLIENT_REPLIES } from 'Constants/clients/routes';
 
   export default {
     components: {
@@ -111,6 +123,7 @@
         this.$store.dispatch('requests/fetchAllByClient')
           .finally(() => this.loading = false);
       },
+
       cancelRequest (request) {
         this.$confirm('Estás a punto de cancelar la solicitud, ¿Deseas continuar?', 'Atención', 'warning', {
           confirmButtonText: 'Aceptar',
@@ -133,6 +146,10 @@
               })
               .finally(() => this.posting = false);
           })
+      },
+
+      goToReplies (request) {
+        this.$router.push({ name: CLIENT_REPLIES, params: { id: request.id } });
       }
     },
   }

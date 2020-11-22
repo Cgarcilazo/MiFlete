@@ -5,6 +5,7 @@ const getDefaultState = () => {
   return {
     requests: [],
     pendingRequests: [],
+    replies: [],
   }
 };
 
@@ -21,6 +22,10 @@ export const mutations = {
 
   setPendingRequests (state, requests) {
     state.pendingRequests = requests;
+  },
+
+  setReplies (state, replies) {
+    state.replies = replies;
   },
 };
 
@@ -73,6 +78,21 @@ export const actions = {
     return new Promise((resolve, reject) => {
       axios.put(`/api/v1/users/${userId}/app-requests/${payload.id}/cancel`)
         .then(() => {
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  },
+
+  fetchReplies ({ rootGetters, commit }, requestId) {
+    const userId = rootGetters['users/getUser'].id || null;
+    return new Promise((resolve, reject) => {
+      axios.get(`/api/v1/users/${userId}/app-requests/${requestId}/replies`)
+        .then((response) => {
+          const replies = response.data.data.replies;
+          commit('setReplies', replies);
           resolve();
         })
         .catch((error) => {
