@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Request extends Model
+class AppRequest extends Model
 {
     use SoftDeletes;
 
@@ -136,7 +136,7 @@ class Request extends Model
 
     public function replies()
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class, 'request_id');
     }
 
     // Methods
@@ -171,5 +171,21 @@ class Request extends Model
     public function getRepliesCountAttribute()
     {
         return $this->replies()->count();
+    }
+
+    /**
+     * Check if the current request is pending
+     */
+    public function isPending()
+    {
+        return $this->status == self::$status['pending'];
+    }
+
+    /**
+     * Check if the current reques has replies
+     */
+    public function hasReplies()
+    {
+        return $this->replies()->count() > 0;
     }
 }

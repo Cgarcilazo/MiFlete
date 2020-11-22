@@ -144,7 +144,7 @@ class User extends Authenticatable implements JWTSubject
     // Relationships
 
     public function requests() {
-        return $this->hasMany(Request::class);
+        return $this->hasMany(AppRequest::class);
     }
 
     // Methods
