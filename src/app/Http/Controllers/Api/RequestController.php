@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\BaseApi;
 use App\Http\Requests\CreateRequestForClient;
 use App\AppRequest;
 use App\User;
+use App\Reply;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
@@ -213,15 +214,31 @@ class RequestController extends BaseApi
     {
         $package = new ResponsePackage();
 
-        if (!$appRequest->isPending() || $appRequest->hasReplies()) {
+        if (!$appRequest->isPending()) {
             return $package->setError('No es posible cancelar la solicitud', BaseApi::HTTP_CONFLICT)
                 ->toResponse();
         }
 
-        $appRequest->update([
-            'status' => AppRequest::$status['canceled']
-        ]);
+        DB::beginTransaction();
+        try {
+            $associatedReplies = $appRequest->replies()->get();
 
+            foreach ($associatedReplies as $reply) {
+                $reply->update([
+                    'status' => Reply::$status['rejected']
+                ]);
+            }
+
+            $appRequest->update([
+                'status' => AppRequest::$status['canceled']
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $package->setError('No es posible cancelar la solicitud', BaseApi::HTTP_CONFLICT)
+                ->toResponse();
+        }
+
+        DB::commit();
         return $package->setMessage('Solicitud Cancelada Correctamente')
             ->setData('request', $appRequest)
             ->toResponse();

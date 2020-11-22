@@ -33,7 +33,7 @@
           <td>{{ request.status }}</td>
           <td>
             <button
-              class="btn btn-link"
+              class="btn btn-link p-1"
               :disabled="request.status !== pending"
               type="button">
               <font-awesome-icon
@@ -43,7 +43,19 @@
               Editar
             </button>
             <button
-              class="btn btn-link"
+              class="btn btn-link p-1"
+              :class="{ 'btn-delete' : request.status == pending }"
+              :disabled="!(request.status == pending)"
+              type="button"
+              @click="cancelRequest(request)">
+              <font-awesome-icon
+                class="navbar-icon"
+                :icon="['fas', 'times-circle']"
+                size="1x"/>
+              Cancelar
+            </button>
+            <button
+              class="btn btn-link p-1"
               :class="{ 'btn-delete' : request.status === done || request.status === canceled }"
               :disabled="request.status !== done && request.status !== canceled"
               type="button">
@@ -64,6 +76,7 @@
   import { CANCELED, DONE, PENDING, RESERVED } from 'Constants/general/requests'
   import { mapState } from 'vuex';
   import Loader from 'Components/resources/Loader';
+  import helpers from 'Base/utils/helpers';
 
   export default {
     components: {
@@ -78,6 +91,7 @@
         reserved: RESERVED,
         fields: ['Origen', 'Destino', 'Fecha', 'Ofertas Recibidas', 'Estado'],
         loading: false,
+        posting: false,
       }
     },
 
@@ -88,9 +102,38 @@
     },
 
     created () {
-      this.loading = true;
-      this.$store.dispatch('requests/fetchAllByClient')
-        .finally(() => this.loading = false);
+      this.fetchRequests();
+    },
+
+    methods: {
+      fetchRequests () {
+        this.loading = true;
+        this.$store.dispatch('requests/fetchAllByClient')
+          .finally(() => this.loading = false);
+      },
+      cancelRequest (request) {
+        this.$confirm('Estás a punto de cancelar la solicitud, ¿Deseas continuar?', 'Atención', 'warning', {
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar'
+        })
+          .then(() => {
+            this.posting = true;
+            this.$store.dispatch('requests/cancel', request)
+              .then(() => {
+                this.$toast.success('Solicitud cancelada correctamente');
+                this.fetchRequests();
+              })
+              .catch((error) => {
+                if (error.response.data.data.errors != null) {
+                  let errorList = helpers.handleResponseErrors(error.response.data.data.errors);
+                  this.$toast.error(errorList[0]);
+                } else {
+                  this.$toast.error(error.response.data.error);
+                }
+              })
+              .finally(() => this.posting = false);
+          })
+      }
     },
   }
 </script>
