@@ -56,9 +56,9 @@ class RequestController extends BaseApi
     /**
      * Store one particular request for the given user
      *
-     * @param  User $user
+     * @param User $user
      *
-     * @param  CreateRequestForClient $request
+     * @param CreateRequestForClient $request
      *
      * @return JsonResponse
      */
@@ -113,9 +113,9 @@ class RequestController extends BaseApi
     /**
      * Store one particular request for the given user
      *
-     * @param  User $user
+     * @param User $user
      *
-     * @param  CreateRequestForClient $request
+     * @param CreateRequestForClient $request
      *
      * @return JsonResponse
      */
@@ -123,7 +123,7 @@ class RequestController extends BaseApi
     {
         $package = new ResponsePackage();
 
-        if (!$appRequest->isPending()) {
+        if (!$appRequest->isPending() || $appRequest->hasReplies()) {
             return $package->setError('No es posible editar la solicitud - estado distinto a pendiente', BaseApi::HTTP_CONFLICT)
                 ->toResponse();
         }
@@ -173,6 +173,8 @@ class RequestController extends BaseApi
     /**
      * Get the list of requests for the given user
      *
+     * @param User $user
+     *
      * @return JsonResponse
      */
     public function getAllPending(User $user)
@@ -189,6 +191,12 @@ class RequestController extends BaseApi
 
     /**
      * Cancel a particular app-request for a given user
+     *
+     * @param User $user
+     *
+     * @param AppRequest $appRequest
+     *
+     * @return JsonResponse
      */
     public function cancel(User $user, AppRequest $appRequest)
     {
