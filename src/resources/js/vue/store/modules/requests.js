@@ -86,6 +86,19 @@ export const actions = {
     })
   },
 
+  acceptReply ({ rootGetters }, payload) {
+    const userId = rootGetters['users/getUser'].id || null;
+    return new Promise((resolve, reject) => {
+      axios.put(`/api/v1/users/${userId}/app-requests/${payload.requestId}/replies/${payload.replyId}/accept`)
+        .then(() => {
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  },
+
   fetchReplies ({ rootGetters, commit }, requestId) {
     const userId = rootGetters['users/getUser'].id || null;
     return new Promise((resolve, reject) => {

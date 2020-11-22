@@ -106,6 +106,10 @@ class ReplyRequestController extends BaseApi
             $reply->update([
                 'status' => Reply::$status['accepted']
             ]);
+
+            $appRequest->update([
+                'status' => AppRequest::$status['reserved']
+            ]);
         } catch (\Throwable $th) {
             DB::rollBack();
             return $package->setError('No es posible aceptar la solicitud, contacte a un administrador', BaseApi::HTTP_CONFLICT)
