@@ -181,8 +181,19 @@ class RequestController extends BaseApi
     {
         $package = new ResponsePackage();
 
-        $allPendingRequests = AppRequest::all()
-            ->where('status', AppRequest::$status['pending']);
+        $allPendingRequests = AppRequest::where('status', AppRequest::$status['pending'])
+            ->with('replies')
+            ->whereDoesntHave('replies', function($query) use ($user) {
+                $query->where([
+                    'user_id' => $user->id,
+                    'status' => AppRequest::$status['pending']
+                ]);
+            })
+            ->get();
+
+        foreach ($allPendingRequests as $request) {
+            $request->append('replies_count');
+        }
 
         return $package->setMessage('Lista de Solicitudes')
             ->setData('requests', $allPendingRequests)
