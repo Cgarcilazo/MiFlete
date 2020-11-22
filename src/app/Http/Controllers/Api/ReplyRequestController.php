@@ -105,7 +105,6 @@ class ReplyRequestController extends BaseApi
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            die(var_dump($th->getMessage()));
             return $package->setError('No es posible aceptar la solicitud, contacte a un administrador', BaseApi::HTTP_CONFLICT)
                 ->toResponse();
         }

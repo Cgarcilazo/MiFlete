@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\DB;
 
 class ReplyController extends BaseApi
 {
+    /**
+     * Cancel the current reply
+     *
+     * @param User $user
+     *
+     * @param Reply $reply
+     *
+     * @return JsonResponse
+     */
     public function cancel(User $user, Reply $reply)
     {
         $package = new ResponsePackage();
