@@ -1,13 +1,14 @@
 'use strict';
 
 //Route names
-import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE, EDIT_USER_CLIENT } from 'Constants/clients/routes';
+import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE, EDIT_USER_CLIENT, CLIENT_REPLIES } from 'Constants/clients/routes';
 
 //Components
 import Home from 'Components/views/clients/Home';
 import Requests from 'Components/views/clients/Requests';
 import NewRequest from 'Components/views/clients/NewRequest';
 import EditUser from 'Components/views/general/EditUser';
+import Replies from 'Components/views/clients/Replies';
 
 
 const routes = [
@@ -30,6 +31,14 @@ const routes = [
     name: CLIENT_REQUESTS_ROUTE,
     path: 'requests',
     component: Requests,
+    meta: {
+      public: false,
+    }
+  },
+  {
+    name: CLIENT_REPLIES,
+    path: 'requests/:id/replies',
+    component: Replies,
     meta: {
       public: false,
     }

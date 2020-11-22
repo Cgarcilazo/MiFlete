@@ -25,7 +25,10 @@ class ReplyRequestController extends BaseApi
     {
         $package = new ResponsePackage();
 
-        $replies = $appRequest->replies()->get();
+        $replies = $appRequest->replies()
+            ->where('status', '<>', Reply::$status['canceled'])
+            ->where('status', '<>', Reply::$status['rejected'])
+            ->get();
 
         return $package->setMessage('Lista de ofertas')
             ->setData('replies', $replies)

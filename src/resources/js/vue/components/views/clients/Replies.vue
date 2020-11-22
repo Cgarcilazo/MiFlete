@@ -5,40 +5,25 @@
         class="background"
         src="/images/client-home-background.jpg"/>
       <h2 class="page-title">
-        Administrar solicitudes
+        Ofertas para la solicitud actual
       </h2>
     </div>
-    <div class="requests-body container p-0">
-      <button
-        class="btn secondary"
-        @click="goToNewRequest()">
-        <font-awesome-icon
-          icon="plus"
-          size="1x"/>
-        Nueva Solicitud
-      </button>
-      <TableRequests/>
+    <div class="replies-body container p-0">
+      <TableReplies/>
     </div>
   </div>
 </template>
 
 <script>
-  import TableRequests from 'Components/tables/clients/TableRequests'
-  import { CLIENT_NEW_REQUEST_ROUTE } from 'Constants/clients/routes';
+  import TableReplies from 'Components/tables/clients/TableReplies'
   export default {
-    components: { TableRequests },
+    components: { TableReplies },
 
     data() {
       return {
 
       }
     },
-
-    methods: {
-      goToNewRequest() {
-        this.$router.push( { name: CLIENT_NEW_REQUEST_ROUTE } )
-      }
-    }
   }
 </script>
 
@@ -65,7 +50,7 @@
       }
     }
 
-    .requests-body {
+    .replies-body {
       margin-top: 3rem;
       height: 100vh;
     }

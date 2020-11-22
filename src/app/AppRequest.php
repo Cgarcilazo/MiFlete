@@ -170,7 +170,10 @@ class AppRequest extends Model
      */
     public function getRepliesCountAttribute()
     {
-        return $this->replies()->count();
+        return $this->replies()
+        ->where('status', '<>', Reply::$status['canceled'])
+        ->where('status', '<>', Reply::$status['rejected'])
+        ->count();
     }
 
     /**
