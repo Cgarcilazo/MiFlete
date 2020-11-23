@@ -5,19 +5,19 @@
         class="background"
         src="/images/client-home-background.jpg"/>
       <h2 class="page-title">
-        Detalle de solicitud
+        Editar la solicitud
       </h2>
     </div>
     <div class="requests-body container h-100 p-0">
-      <DetailRequestForm/>
+      <NewRequestForm/>
     </div>
   </div>
 </template>
 
 <script>
-  import DetailRequestForm from 'Components/forms/DetailRequestForm'
+  import NewRequestForm from 'Components/forms/clients/NewRequestForm'
   export default {
-    components: { DetailRequestForm }
+    components: { NewRequestForm }
 
   }
 </script>

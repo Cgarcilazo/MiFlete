@@ -108,6 +108,19 @@ export const actions = {
     });
   },
 
+  edit ({rootGetters}, payload) {
+    return new Promise((resolve, reject) => {
+      const userId = rootGetters['users/getUser'].id || null;
+      axios.put(`/api/v1/users/${userId}/app-requests/${payload.id}`, payload)
+        .then(() => {
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  },
+
   cancel ({ rootGetters }, payload) {
     const userId = rootGetters['users/getUser'].id || null;
     return new Promise((resolve, reject) => {

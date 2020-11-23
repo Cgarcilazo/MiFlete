@@ -125,7 +125,7 @@ class RequestController extends BaseApi
     {
         $package = new ResponsePackage();
 
-        if (!$appRequest->isPending() || $appRequest->hasReplies()) {
+        if (!$appRequest->isPending()) {
             return $package->setError('No es posible editar la solicitud - estado distinto a pendiente', BaseApi::HTTP_CONFLICT)
                 ->toResponse();
         }

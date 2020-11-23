@@ -113,7 +113,7 @@ class CreateInitialMigration extends Migration
                 ->unsigned();
             $table->foreign('request_id')
                 ->references('id')
-                ->on('users')
+                ->on('requests')
                 ->onDelete('cascade');
         });
 
@@ -153,7 +153,7 @@ class CreateInitialMigration extends Migration
                 ->unsigned();
             $table->foreign('request_id')
                 ->references('id')
-                ->on('users')
+                ->on('requests')
                 ->onDelete('cascade');
 
             $table->integer('reply_id')
@@ -161,7 +161,7 @@ class CreateInitialMigration extends Migration
                 ->unsigned();
             $table->foreign('reply_id')
                 ->references('id')
-                ->on('users')
+                ->on('replies')
                 ->onDelete('cascade');
         });
 
@@ -203,7 +203,7 @@ class CreateInitialMigration extends Migration
                 ->unsigned();
             $table->foreign('request_id')
                 ->references('id')
-                ->on('users')
+                ->on('requests')
                 ->onDelete('cascade');
 
             $table->integer('reply_id')
@@ -211,7 +211,7 @@ class CreateInitialMigration extends Migration
                 ->unsigned();
             $table->foreign('reply_id')
                 ->references('id')
-                ->on('users')
+                ->on('replies')
                 ->onDelete('cascade');
         });
     }

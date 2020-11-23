@@ -24,7 +24,7 @@ class ReplyController extends BaseApi
 
         $carrierReplies = $user->replies()
             ->where('status', '<>', Reply::$status['done'])
-            ->orderBy('status')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return $package->setMessage('Lista de Ofertas')
