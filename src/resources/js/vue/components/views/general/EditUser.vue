@@ -9,7 +9,7 @@
       </h2>
     </div>
 
-    <div class="edit-user-form px-3">
+    <div class="edit-user-form px-3 pt-3">
       <ValidationObserver v-slot="{ invalid }">
         <form class="form row mx-0"
               @submit.prevent="onSubmit">

@@ -4,7 +4,7 @@
 
     <div v-if="!loading && pendingRequests.length === 0">
       <p class="font-weight-bold">
-        Aún no existen solicitudes cargadas
+        No hay solicitudes pendientes para ofertar
       </p>
     </div>
 
@@ -35,7 +35,8 @@
             <button
               class="btn btn-link"
               :disabled="request.status !== pending"
-              type="button">
+              type="button"
+              @click="goToCreate(request)">
               <font-awesome-icon
                 class="navbar-icon"
                 :icon="['fas', 'external-link-alt']"
@@ -53,6 +54,7 @@
   import { CANCELED, DONE, PENDING, RESERVED } from 'Constants/general/requests'
   import { mapState } from 'vuex';
   import Loader from 'Components/resources/Loader';
+  import { CARRIER_REPLY_CREATE } from 'Constants/carriers/routes';
 
   export default {
     components: {
@@ -80,6 +82,12 @@
       this.loading = true;
       this.$store.dispatch('requests/fetchAllPending')
         .finally(() => this.loading = false);
+    },
+
+    methods: {
+      goToCreate (request) {
+        this.$router.push({ name: CARRIER_REPLY_CREATE, params: { id: request.id } });
+      }
     },
   }
 </script>
