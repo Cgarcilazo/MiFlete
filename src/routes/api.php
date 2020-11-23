@@ -37,5 +37,6 @@ Route::group(['prefix' => '/v1'], function () {
 
         // Replies
         Route::put('/users/{user}/replies/{reply}/cancel', 'ReplyController@cancel');
+        Route::resource('/users/{user}/replies', 'ReplyController');
     });
 });
