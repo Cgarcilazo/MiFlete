@@ -33,7 +33,18 @@
           <td>{{ request.status }}</td>
           <td>
             <button
-              class="btn btn-link"
+              class="btn btn-link p-1"
+              type="button"
+              @click="goToDetails(request)">
+              <font-awesome-icon
+                class="navbar-icon"
+                :icon="['far', 'eye']"
+                size="1x"/>
+              Ver detalles
+            </button>
+
+            <button
+              class="btn btn-link p-1"
               :disabled="request.status !== pending"
               type="button"
               @click="goToCreate(request)">
@@ -54,7 +65,7 @@
   import { CANCELED, DONE, PENDING, RESERVED } from 'Constants/general/requests'
   import { mapState } from 'vuex';
   import Loader from 'Components/resources/Loader';
-  import { CARRIER_REPLY_CREATE } from 'Constants/carriers/routes';
+  import { CARRIER_REPLY_CREATE, CARRIER_REQUESTS_DETAILS_ROUTE } from 'Constants/carriers/routes';
 
   export default {
     components: {
@@ -87,6 +98,10 @@
     methods: {
       goToCreate (request) {
         this.$router.push({ name: CARRIER_REPLY_CREATE, params: { id: request.id } });
+      },
+
+      goToDetails (request) {
+        this.$router.push({ name: CARRIER_REQUESTS_DETAILS_ROUTE, params: { id: request.id } });
       }
     },
   }
