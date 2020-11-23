@@ -34,7 +34,6 @@
           <td>
             <button
               class="btn btn-link p-1"
-              :disabled="request.status !== pending"
               type="button"
               @click="goToDetail(request)">
               <font-awesome-icon

@@ -24,7 +24,7 @@
         <tr
           v-for="(reply, index) in replies"
           :key="index">
-          <td>{{ reply['price'] }}</td>
+          <td>{{ '$' + reply['price'] }}</td>
           <td>{{ reply['description'] || '-' }}</td>
           <td>{{ reply.status }}</td>
           <td>
@@ -51,7 +51,7 @@
   import { mapState } from 'vuex';
   import Loader from 'Components/resources/Loader';
   import helpers from 'Base/utils/helpers';
-  import { CLIENT_REPLIES } from 'Constants/clients/routes';
+  import { CLIENT_REPLIES, CLIENT_REQUESTS_ROUTE } from 'Constants/clients/routes';
 
   export default {
     components: {
@@ -101,7 +101,7 @@
             this.$store.dispatch('requests/acceptReply', payload)
               .then(() => {
                 this.$toast.success('Oferta aceptada');
-                this.fetchReplies();
+                this.goToRequests();
               })
               .catch((error) => {
                 if (error.response.data.data.errors != null) {
@@ -113,6 +113,10 @@
               })
               .finally(() => this.posting = false);
           })
+      },
+
+      goToRequests () {
+        this.$router.push({ name: CLIENT_REQUESTS_ROUTE });
       },
     },
   }
