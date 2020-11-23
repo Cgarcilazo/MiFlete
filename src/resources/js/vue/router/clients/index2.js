@@ -1,15 +1,14 @@
 'use strict';
 
 //Route names
-import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE, EDIT_USER_CLIENT, CLIENT_REPLIES, CLIENT_DETAIL_REQUEST_ROUTE } from 'Constants/clients/routes';
+import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE, CLIENT_DETAIL_REQUEST_ROUTE, EDIT_USER_CLIENT } from 'Constants/clients/routes';
 
 //Components
 import Home from 'Components/views/clients/Home';
 import Requests from 'Components/views/clients/Requests';
 import NewRequest from 'Components/views/clients/NewRequest';
-import EditUser from 'Components/views/general/EditUser';
-import Replies from 'Components/views/clients/Replies';
 import DetailRequest from 'Components/views/clients/DetailRequest';
+import EditUser from 'Components/views/general/EditUser';
 
 
 const routes = [
@@ -37,25 +36,17 @@ const routes = [
     }
   },
   {
-    name: CLIENT_REPLIES,
-    path: 'requests/:id/replies',
-    component: Replies,
+    name: CLIENT_NEW_REQUEST_ROUTE,
+    path: 'new-request',
+    component: NewRequest,
     meta: {
       public: false,
     }
   },
   {
     name: CLIENT_DETAIL_REQUEST_ROUTE,
-    path: 'requests/:id',
+    path: 'detail-request/:id',
     component: DetailRequest,
-    meta: {
-      public: false,
-    }
-  },
-  {
-    name: CLIENT_NEW_REQUEST_ROUTE,
-    path: 'new-request',
-    component: NewRequest,
     meta: {
       public: false,
     }
