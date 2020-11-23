@@ -22,5 +22,6 @@
 
   html, body {
     height: 100%;
+    background-color: $background-grey;
   }
 </style>

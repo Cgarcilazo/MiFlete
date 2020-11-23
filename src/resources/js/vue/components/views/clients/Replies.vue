@@ -52,7 +52,6 @@
 
     .replies-body {
       margin-top: 3rem;
-      height: 100vh;
     }
   }
 
