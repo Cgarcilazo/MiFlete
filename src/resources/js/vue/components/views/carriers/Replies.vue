@@ -5,17 +5,17 @@
         class="background"
         src="/images/client-home-background.jpg"/>
       <h2 class="page-title">
-        Ofertas para la solicitud actual
+        Ofertas realizadas
       </h2>
     </div>
-    <div class="replies-body container p-0">
+    <div class="requests-body container h-100 p-0">
       <TableReplies/>
     </div>
   </div>
 </template>
 
 <script>
-  import TableReplies from 'Components/tables/clients/TableReplies'
+  import TableReplies from 'Components/tables/carriers/TableReplies'
   export default {
     components: { TableReplies },
 
@@ -50,7 +50,7 @@
       }
     }
 
-    .replies-body {
+    .requests-body {
       margin-top: 3rem;
     }
   }

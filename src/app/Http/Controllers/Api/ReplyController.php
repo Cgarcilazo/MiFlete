@@ -12,6 +12,27 @@ use Illuminate\Support\Facades\DB;
 class ReplyController extends BaseApi
 {
     /**
+     * Get the list of replies for the given user
+     *
+     * @param User $user
+     *
+     * @return JsonResponse
+     */
+    public function index(User $user)
+    {
+        $package = new ResponsePackage();
+
+        $carrierReplies = $user->replies()
+            ->where('status', '<>', Reply::$status['done'])
+            ->orderBy('status')
+            ->get();
+
+        return $package->setMessage('Lista de Ofertas')
+            ->setData('replies', $carrierReplies)
+            ->toResponse();
+    }
+
+    /**
      * Cancel the current reply
      *
      * @param User $user

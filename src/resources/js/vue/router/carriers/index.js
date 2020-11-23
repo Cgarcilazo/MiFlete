@@ -1,9 +1,12 @@
 'use strict';
 
 //Route names
-import { CARRIER_HOME_ROUTE, EDIT_USER_CARRIER, CARRIER_REQUESTS_ROUTE } from 'Constants/carriers/routes';
+import { CARRIER_HOME_ROUTE, EDIT_USER_CARRIER, CARRIER_REQUESTS_ROUTE, CARRIER_REPLY_CREATE, CARRIER_REQUESTS_DETAILS_ROUTE, CARRIER_REPLIES_ROUTE } from 'Constants/carriers/routes';
 import EditUser from 'Components/views/general/EditUser';
 import Requests from 'Components/views/carriers/Requests';
+import CreateReply from 'Components/views/carriers/NewReply';
+import RequestDetails from 'Components/views/carriers/RequestDetails';
+import Replies from 'Components/views/carriers/Replies';
 
 //Components
 import Home from 'Components/views/carriers/Home';
@@ -36,6 +39,30 @@ const routes = [
     name: CARRIER_REQUESTS_ROUTE,
     path: 'requests',
     component: Requests,
+    meta: {
+      public: false,
+    }
+  },
+  {
+    name: CARRIER_REPLIES_ROUTE,
+    path: 'replies',
+    component: Replies,
+    meta: {
+      public: false,
+    }
+  },
+  {
+    name: CARRIER_REQUESTS_DETAILS_ROUTE,
+    path: 'requests/:id',
+    component: RequestDetails,
+    meta: {
+      public: false,
+    }
+  },
+  {
+    name: CARRIER_REPLY_CREATE,
+    path: 'requests/:id/replies/create',
+    component: CreateReply,
     meta: {
       public: false,
     }

@@ -5,19 +5,19 @@
         class="background"
         src="/images/client-home-background.jpg"/>
       <h2 class="page-title">
-        Registrar solicitud
+        Crear Oferta
       </h2>
     </div>
     <div class="requests-body container h-100 p-0">
-      <NewRequestForm/>
+      <NewReplyForm/>
     </div>
   </div>
 </template>
 
 <script>
-  import NewRequestForm from 'Components/forms/clients/NewRequestForm'
+  import NewReplyForm from 'Components/forms/carriers/NewReplyForm'
   export default {
-    components: { NewRequestForm }
+    components: { NewReplyForm }
 
   }
 </script>
