@@ -23,6 +23,7 @@ class RequestController extends BaseApi
     public function index(User $user)
     {
         $package = new ResponsePackage();
+
         $clientRequests = $user->requests()->get();
 
         foreach ($clientRequests as $request) {
