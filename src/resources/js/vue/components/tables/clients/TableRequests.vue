@@ -35,7 +35,19 @@
             <button
               class="btn btn-link p-1"
               :disabled="request.status !== pending"
-              type="button">
+              type="button"
+              @click="goToDetail(request)">
+              <font-awesome-icon
+                class="navbar-icon"
+                :icon="['far', 'eye']"
+                size="1x"/>
+              Ver detalle
+            </button>
+            <button
+              class="btn btn-link p-1"
+              :disabled="request.status !== pending"
+              type="button"
+              @click="goToEdit(request)">
               <font-awesome-icon
                 class="navbar-icon"
                 icon="edit"
@@ -89,6 +101,7 @@
   import Loader from 'Components/resources/Loader';
   import helpers from 'Base/utils/helpers';
   import { CLIENT_REPLIES } from 'Constants/clients/routes';
+  import { CLIENT_DETAIL_REQUEST_ROUTE, CLIENT_REQUEST_EDIT_ROUTE } from 'Constants/clients/routes';
 
   export default {
     components: {
@@ -150,7 +163,15 @@
 
       goToReplies (request) {
         this.$router.push({ name: CLIENT_REPLIES, params: { id: request.id } });
-      }
+      },
+
+      goToDetail (request) {
+        this.$router.push({ name: CLIENT_DETAIL_REQUEST_ROUTE, params: { id: request.id } });
+      },
+
+      goToEdit(request) {
+        this.$router.push({ name: CLIENT_REQUEST_EDIT_ROUTE, params: { id: request.id } });
+      },
     },
   }
 </script>

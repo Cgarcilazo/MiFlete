@@ -80,10 +80,38 @@ export const actions = {
     });
   },
 
+  fetchDetail ({ commit, rootGetters }, payload) {
+    return new Promise((resolve, reject) => {
+      const userId = rootGetters['users/getUser'].id || null;
+      axios.get(`/api/v1/users/${userId}/app-requests/${payload.id}`)
+        .then((response) => {
+          const request = response.data.data.request || [];
+          commit('setRequest', request);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  },
+
   create ({rootGetters}, payload) {
     return new Promise((resolve, reject) => {
       const userId = rootGetters['users/getUser'].id || null;
       axios.post(`/api/v1/users/${userId}/app-requests`, payload)
+        .then(() => {
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
+  },
+
+  edit ({rootGetters}, payload) {
+    return new Promise((resolve, reject) => {
+      const userId = rootGetters['users/getUser'].id || null;
+      axios.put(`/api/v1/users/${userId}/app-requests/${payload.id}`, payload)
         .then(() => {
           resolve();
         })

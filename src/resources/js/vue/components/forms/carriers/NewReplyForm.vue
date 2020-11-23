@@ -87,7 +87,7 @@
 </template>
 
 <script>
-  import { CARRIER_REQUESTS_ROUTE } from 'Constants/carriers/routes';
+  import { CARRIER_REQUESTS_ROUTE, CARRIER_REPLIES_ROUTE } from 'Constants/carriers/routes';
   import helpers from 'Base/utils/helpers';
   import { mapState } from 'vuex';
   import Loader from 'Components/resources/Loader';
@@ -135,13 +135,17 @@
         this.$router.push({ name: CARRIER_REQUESTS_ROUTE });
       },
 
+      goToAllReplies () {
+        this.$router.push({ name: CARRIER_REPLIES_ROUTE });
+      },
+
       onSubmit () {
         this.saving = true
         this.payload.requestId = this.request.id || null;
         this.$store.dispatch('replies/create', this.payload)
           .then(() => {
             this.$toast.success('Oferta creada correctamente');
-            this.goBack();
+            this.goToAllReplies();
           })
           .catch((error) => {
             if (error.response.data.data.errors != null) {

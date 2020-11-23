@@ -1,7 +1,7 @@
 'use strict';
 
 //Route names
-import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE, EDIT_USER_CLIENT, CLIENT_REPLIES } from 'Constants/clients/routes';
+import { CLIENT_HOME_ROUTE, CLIENT_REQUESTS_ROUTE, CLIENT_NEW_REQUEST_ROUTE, EDIT_USER_CLIENT, CLIENT_REPLIES, CLIENT_DETAIL_REQUEST_ROUTE, CLIENT_REQUEST_EDIT_ROUTE } from 'Constants/clients/routes';
 
 //Components
 import Home from 'Components/views/clients/Home';
@@ -9,6 +9,8 @@ import Requests from 'Components/views/clients/Requests';
 import NewRequest from 'Components/views/clients/NewRequest';
 import EditUser from 'Components/views/general/EditUser';
 import Replies from 'Components/views/clients/Replies';
+import RequestDetails from 'Components/views/clients/RequestDetails';
+import RequestEdit from 'Components/views/clients/EditRequest';
 
 
 const routes = [
@@ -39,6 +41,22 @@ const routes = [
     name: CLIENT_REPLIES,
     path: 'requests/:id/replies',
     component: Replies,
+    meta: {
+      public: false,
+    }
+  },
+  {
+    name: CLIENT_DETAIL_REQUEST_ROUTE,
+    path: 'requests/:id',
+    component: RequestDetails,
+    meta: {
+      public: false,
+    }
+  },
+  {
+    name: CLIENT_REQUEST_EDIT_ROUTE,
+    path: 'requests/:id/edit',
+    component: RequestEdit,
     meta: {
       public: false,
     }
