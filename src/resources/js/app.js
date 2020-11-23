@@ -6,7 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBoxOpen, faKey, faTruck, faUserPlus, faSignInAlt, faSignOutAlt, faCheck, faClipboardList,
   faEdit, faAngleRight, faSearchDollar, faUsers, faHome, faPlus, faExternalLinkAlt, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-import { faEnvelope, faUser, faTrashAlt, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { faEnvelope, faUser, faTrashAlt, faCheckCircle, faEye } from '@fortawesome/free-regular-svg-icons'
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import validationRules from 'Base/validator';
 import store from 'Base/store';
@@ -17,7 +17,7 @@ import VueSimpleAlert from "vue-simple-alert";
 
 library.add(faBoxOpen, faEnvelope, faUser, faKey, faTruck, faUserPlus, faSignInAlt, faCheck,
   faClipboardList, faEdit, faAngleRight, faSearchDollar, faUsers, faSignOutAlt, faHome, faPlus,
-  faTrashAlt, faExternalLinkAlt, faTimesCircle, faCheckCircle);
+  faTrashAlt, faExternalLinkAlt, faTimesCircle, faCheckCircle, faEye);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationProvider', ValidationProvider);
